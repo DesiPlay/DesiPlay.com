@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DesiPlay — Snake & Ladder</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.game-hero{padding:120px 5% 80px;position:relative;overflow:hidden;}
+.game-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(150,50,255,0.22) 0%,transparent 70%);}
+.game-hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1100px;margin:0 auto;}
+.game-big-emoji{font-size:clamp(100px,15vw,160px);text-align:center;animation:floatBig 4s ease-in-out infinite;}
+.game-hero-text h1{font-family:'Baloo 2',cursive;font-size:clamp(36px,6vw,60px);font-weight:800;line-height:1.1;margin-bottom:14px;}
+.game-hero-text .cat{display:inline-block;background:rgba(150,50,255,0.18);color:rgb(150,50,255);border-radius:100px;padding:5px 14px;font-size:12px;font-weight:600;margin-bottom:16px;letter-spacing:1px;}
+.game-hero-text p{color:var(--text2);font-size:16px;line-height:1.7;margin-bottom:28px;}
+.meta-pills{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px;}
+.meta-pill{background:rgba(255,255,255,0.07);border:1px solid var(--border);border-radius:100px;padding:6px 16px;font-size:13px;color:var(--text2);}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.rules-box,.tips-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;}
+.rules-box h3,.tips-box h3{font-family:'Baloo 2',cursive;font-size:22px;font-weight:700;margin-bottom:20px;}
+.rule-item{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px;}
+.rule-num{width:28px;height:28px;border-radius:50%;background:rgba(150,50,255,0.18);color:rgb(150,50,255);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;}
+.rule-text{font-size:14px;color:var(--text2);line-height:1.6;padding-top:3px;}
+.tip-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px;}
+.tip-dot{width:8px;height:8px;border-radius:50%;background:rgb(150,50,255);flex-shrink:0;margin-top:7px;}
+
+.screenshots{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.screenshot{background:var(--card);border:1px solid var(--border);border-radius:18px;aspect-ratio:9/16;display:flex;align-items:center;justify-content:center;font-size:60px;}
+
+.other-games{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;}
+.other-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;text-align:center;text-decoration:none;transition:all 0.2s;display:block;}
+.other-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.15);}
+.other-card span{font-size:36px;display:block;margin-bottom:8px;}
+.other-card p{font-size:14px;font-weight:600;color:var(--text);}
+
+.cta-wrap{background:var(--dark3);padding:80px 5%;text-align:center;position:relative;overflow:hidden;}
+.cta-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(150,50,255,0.15),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);}
+.cta-wrap h2{font-family:'Baloo 2',cursive;font-size:clamp(26px,4vw,46px);font-weight:800;margin-bottom:12px;position:relative;}
+.cta-wrap p{color:var(--text2);margin-bottom:30px;position:relative;}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;}
+
+@keyframes floatBig{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-20px) rotate(3deg)}}
+@media(max-width:768px){.game-hero-inner{grid-template-columns:1fr;text-align:center;}.game-big-emoji{font-size:100px;order:-1;}.meta-pills{justify-content:center;}.hero-btns{justify-content:center;}.rules-grid{grid-template-columns:1fr;}.screenshots{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo">🎮 Desi<span>Play</span></a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../games.html" class="active">Games</a>
+    <a href="../about.html">About</a>
+    <a href="../download.html">Download</a>
+    <a href="../contact.html">Contact</a>
+  </div>
+  <a href="../download.html" class="nav-cta">Free Download</a>
+</nav>
+
+<div class="game-hero">
+  <div class="game-hero-bg"></div>
+  <div class="game-hero-inner">
+    <div class="game-hero-text reveal">
+      <div class="cat">Board Game</div>
+      <h1>🐍 Snake & Ladder</h1>
+      <p>Snake and Ladder एक ancient Indian game है — originally 'Moksha Patam'। Dice roll करो, आगे बढ़ो। Ladder मिली तो lucky! Snake काटा तो वापस! 100 तक पहुंचने वाला जीतेगा।</p>
+      <div class="meta-pills">
+        <span class="meta-pill">👥 2-6 Players</span>
+        <span class="meta-pill">📶 Offline</span>
+        <span class="meta-pill">🆓 Free</span>
+        <span class="meta-pill">🇮🇳 Hindi UI</span>
+      </div>
+      <div class="hero-btns">
+        <a href="../download.html" class="btn-primary">📱 Download करो</a>
+        <a href="../games.html" class="btn-secondary">← सभी Games</a>
+      </div>
+    </div>
+    <div class="game-big-emoji reveal">🐍</div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-header reveal">
+    <div class="section-tag">How to Play</div>
+    <h2 class="section-title">कैसे खेलें?</h2>
+    <p class="section-sub">सांप से बचो, सीढ़ी चढ़ो!</p>
+  </div>
+  <div class="rules-grid">
+    <div class="rules-box reveal">
+      <h3>📋 Rules</h3>
+      <div class="rule-item"><div class="rule-num">1</div><div class="rule-text">Dice roll करो और आगे बढ़ो</div></div><div class="rule-item"><div class="rule-num">2</div><div class="rule-text">Ladder के नीचे land हुए तो ऊपर चढ़ो!</div></div><div class="rule-item"><div class="rule-num">3</div><div class="rule-text">Snake के मुंह पर land हुए तो नीचे जाओ</div></div><div class="rule-item"><div class="rule-num">4</div><div class="rule-text">Exact number से 100 पर पहुंचना होगा</div></div><div class="rule-item"><div class="rule-num">5</div><div class="rule-text">पहले 100 पहुंचने वाला जीतेगा</div></div>
+    </div>
+    <div class="tips-box reveal">
+      <h3>💡 Pro Tips</h3>
+      <div class="tip-item"><div class="tip-dot"></div><div class="rule-text">Luck का खेल है — enjoy करो!</div></div><div class="tip-item"><div class="tip-dot"></div><div class="rule-text">बड़े snakes से बचना important</div></div><div class="tip-item"><div class="tip-dot"></div><div class="rule-text">Ladders के पास रहो</div></div>
+      <div style="margin-top:24px;padding:20px;background:rgba(150,50,255,0.08);border-radius:14px;border:1px solid rgba(150,50,255,0.2);">
+        <div style="font-size:13px;font-weight:600;color:rgb(150,50,255);margin-bottom:8px;">🎯 याद रखो</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6;">Practice से ही perfect होते हैं। रोज़ खेलो और champion बनो!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark">
+  <div class="section-header reveal">
+    <div class="section-tag">Screenshots</div>
+    <h2 class="section-title">Game कैसा दिखता है?</h2>
+  </div>
+  <div class="screenshots">
+    <div class="screenshot reveal">🐍</div>
+    <div class="screenshot reveal" style="font-size:50px">🏆</div>
+    <div class="screenshot reveal" style="font-size:50px">🎮</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header reveal">
+    <div class="section-tag">More Games</div>
+    <h2 class="section-title">और Games खेलो!</h2>
+  </div>
+  <div class="other-games">
+    <a href="ludo.html" class="other-card"><span>🎲</span><p>Ludo</p></a><a href="chess.html" class="other-card"><span>♟️</span><p>Chess / शतरंज</p></a><a href="carrom.html" class="other-card"><span>🎯</span><p>Carrom</p></a><a href="pool.html" class="other-card"><span>🎱</span><p>Pool / 8-Ball</p></a><a href="tictactoe.html" class="other-card"><span>✏️</span><p>Tic Tac Toe</p></a><a href="cards.html" class="other-card"><span>🃏</span><p>Card Games</p></a>
+  </div>
+</section>
+
+<div class="cta-wrap">
+  <div class="cta-glow"></div>
+  <h2>🐍 Snake & Ladder खेलना शुरू करो!</h2>
+  <p>App download करो — बिल्कुल free, हमेशा के लिए!</p>
+  <div class="cta-btns">
+    <a href="../download.html" class="btn-primary">📱 Free Download</a>
+    <a href="../games.html" class="btn-secondary">🎮 और Games देखो</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><span class="footer-logo">🎮 DesiPlay</span><p>भारत का सबसे बेहतरीन offline gaming app!</p></div>
+    <div class="footer-col"><h4>Games</h4><a href="ludo.html">Ludo</a><a href="chess.html">Chess</a><a href="carrom.html">Carrom</a><a href="pool.html">Pool</a></div>
+    <div class="footer-col"><h4>Pages</h4><a href="../about.html">About</a><a href="../download.html">Download</a><a href="../contact.html">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><span class="footer-copy">© 2024 DesiPlay. Made with ❤️ in India 🇮🇳</span></div>
+</footer>
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*80)});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>

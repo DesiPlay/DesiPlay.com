@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DesiPlay — भारत का Gaming Hub</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.hero { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:80px 5% 60px; position:relative; overflow:hidden; }
+.hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(108,71,255,0.25) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 80% 80%,rgba(255,215,0,0.08) 0%,transparent 60%); }
+.grid-bg { position:absolute; inset:0; background-image:linear-gradient(rgba(108,71,255,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(108,71,255,0.06) 1px,transparent 1px); background-size:60px 60px; }
+.hero-content { position:relative; z-index:2; max-width:800px; }
+.hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(108,71,255,0.15); border:1px solid rgba(108,71,255,0.3); border-radius:100px; padding:6px 18px; margin-bottom:28px; font-size:13px; color:var(--purple2); animation:fadeUp 0.6s ease both; }
+.hero-title { font-family:'Baloo 2',cursive; font-size:clamp(44px,9vw,88px); font-weight:800; line-height:1.03; margin-bottom:20px; animation:fadeUp 0.7s ease 0.1s both; }
+.hero-title .hl { background:linear-gradient(135deg,var(--gold),var(--purple2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero-sub { font-size:clamp(15px,2.5vw,18px); color:var(--text2); line-height:1.7; margin-bottom:40px; animation:fadeUp 0.7s ease 0.2s both; }
+.hero-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; animation:fadeUp 0.7s ease 0.3s both; }
+.hero-stats { display:flex; gap:48px; justify-content:center; flex-wrap:wrap; margin-top:64px; animation:fadeUp 0.7s ease 0.4s both; }
+.stat-num { font-family:'Baloo 2',cursive; font-size:36px; font-weight:800; color:var(--gold); }
+.stat-label { font-size:12px; color:var(--text2); }
+
+.fi { position:absolute; font-size:40px; opacity:0.12; animation:float 7s ease-in-out infinite; pointer-events:none; z-index:1; }
+.fi:nth-child(1){top:15%;left:6%;animation-delay:0s}
+.fi:nth-child(2){top:20%;right:8%;animation-delay:1.2s}
+.fi:nth-child(3){bottom:28%;left:5%;animation-delay:2.1s}
+.fi:nth-child(4){bottom:18%;right:7%;animation-delay:0.6s}
+.fi:nth-child(5){top:58%;left:12%;animation-delay:3s}
+.fi:nth-child(6){top:42%;right:4%;animation-delay:1.8s}
+.fi:nth-child(7){top:70%;right:15%;animation-delay:2.5s}
+
+.games-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+.game-card { background:var(--card); border:1px solid var(--border); border-radius:22px; padding:28px 20px 22px; text-align:center; cursor:pointer; transition:all 0.25s; position:relative; overflow:hidden; text-decoration:none; display:block; }
+.game-card::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,var(--gc,rgba(108,71,255,0.12)),transparent); opacity:0; transition:opacity 0.3s; }
+.game-card:hover { transform:translateY(-7px); border-color:rgba(255,255,255,0.18); }
+.game-card:hover::after { opacity:1; }
+.game-emoji { font-size:54px; margin-bottom:14px; display:block; }
+.game-name { font-family:'Baloo 2',cursive; font-size:21px; font-weight:700; margin-bottom:6px; color:var(--text); }
+.game-desc { font-size:13px; color:var(--text2); line-height:1.5; }
+.game-players { margin-top:14px; display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,0.06); border-radius:100px; padding:4px 12px; font-size:12px; color:var(--text2); }
+.g-badge { position:absolute; top:14px; right:14px; background:var(--gold); color:#000; font-size:10px; font-weight:700; padding:3px 8px; border-radius:100px; }
+
+.features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:24px; }
+.feature-card { background:var(--card); border:1px solid var(--border); border-radius:18px; padding:28px; transition:all 0.25s; }
+.feature-card:hover { border-color:rgba(108,71,255,0.35); transform:translateY(-3px); }
+.feat-icon { width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:18px; }
+.feat-title { font-size:17px; font-weight:600; margin-bottom:8px; }
+.feat-desc { font-size:14px; color:var(--text2); line-height:1.6; }
+
+.money-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; }
+.money-card { background:var(--card); border:1px solid var(--border); border-radius:18px; padding:26px; transition:all 0.25s; }
+.money-card:hover { border-color:rgba(255,215,0,0.35); transform:translateY(-3px); }
+.money-icon { font-size:32px; margin-bottom:12px; }
+.money-title { font-size:16px; font-weight:600; margin-bottom:6px; }
+.money-desc { font-size:13px; color:var(--text2); line-height:1.5; }
+.money-earn { margin-top:12px; font-size:13px; font-weight:600; color:var(--gold); }
+
+.steps { display:flex; flex-direction:column; gap:0; max-width:700px; margin:0 auto; }
+.step { display:flex; gap:24px; align-items:flex-start; padding-bottom:40px; position:relative; }
+.step:not(:last-child)::after { content:''; position:absolute; left:23px; top:52px; width:2px; bottom:0; background:linear-gradient(var(--purple),transparent); }
+.step-num { width:48px; height:48px; border-radius:50%; flex-shrink:0; background:var(--purple); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Baloo 2',cursive; font-size:20px; font-weight:800; }
+.step h3 { font-size:18px; font-weight:600; margin-bottom:6px; }
+.step p { font-size:14px; color:var(--text2); line-height:1.6; }
+.step-tag { display:inline-block; margin-top:8px; background:rgba(255,215,0,0.12); color:var(--gold); font-size:12px; padding:3px 10px; border-radius:100px; }
+
+.cta-wrap { background:var(--dark3); padding:90px 5%; text-align:center; position:relative; overflow:hidden; }
+.cta-glow { position:absolute; width:700px; height:700px; background:radial-gradient(circle,rgba(108,71,255,0.18),transparent 70%); top:50%; left:50%; transform:translate(-50%,-50%); }
+.cta-wrap h2 { font-family:'Baloo 2',cursive; font-size:clamp(28px,5vw,52px); font-weight:800; margin-bottom:14px; position:relative; }
+.cta-wrap p { color:var(--text2); font-size:16px; margin-bottom:36px; position:relative; }
+.cta-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; position:relative; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+@keyframes float { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-18px) rotate(5deg)} }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">🎮 Desi<span>Play</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="games.html">Games</a>
+    <a href="about.html">About</a>
+    <a href="download.html">Download</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="download.html" class="nav-cta">Free Download</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-bg"></div>
+  <div class="fi">🎲</div><div class="fi">♟️</div><div class="fi">🎯</div>
+  <div class="fi">🎱</div><div class="fi">🐍</div><div class="fi">🃏</div><div class="fi">✏️</div>
+  <div class="hero-content">
+    <div class="hero-badge">⭐ भारत का #1 Offline Gaming App</div>
+    <h1 class="hero-title">सब Games<br><span class="hl">एक App में!</span></h1>
+    <p class="hero-sub">Ludo, Chess, Carrom, Pool और बहुत कुछ — बिना Internet के, दोस्तों के साथ खेलो। बिल्कुल Free!</p>
+    <div class="hero-btns">
+      <a href="download.html" class="btn-primary">📱 Free Download करो</a>
+      <a href="games.html" class="btn-secondary">🎮 Games देखो</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Games</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Offline</div></div>
+      <div class="stat"><div class="stat-num">Free</div><div class="stat-label">हमेशा</div></div>
+      <div class="stat"><div class="stat-num">Hindi</div><div class="stat-label">UI में</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header reveal">
+    <div class="section-tag">All Games</div>
+    <h2 class="section-title">कौन-कौन से Games हैं?</h2>
+    <p class="section-sub">सभी classic board games — offline, free!</p>
+  </div>
+  <div class="games-grid">
+    <a href="games/ludo.html" class="game-card reveal" style="--gc:rgba(255,165,0,0.15)">
+      <div class="g-badge">HOT</div>
+      <span class="game-emoji">🎲</span>
+      <div class="game-name">Ludo</div>
+      <div class="game-desc">Classic Indian board game — गोटी चलाओ, जीत जाओ!</div>
+      <div class="game-players">👥 2-4 Players</div>
+    </a>
+    <a href="games/chess.html" class="game-card reveal" style="--gc:rgba(100,100,255,0.15)">
+      <span class="game-emoji">♟️</span>
+      <div class="game-name">Chess</div>
+      <div class="game-desc">दिमाग की खेल — शतरंज में जीत दिखाओ!</div>
+      <div class="game-players">👥 2 Players</div>
+    </a>
+    <a href="games/carrom.html" class="game-card reveal" style="--gc:rgba(0,200,100,0.15)">
+      <div class="g-badge">NEW</div>
+      <span class="game-emoji">🎯</span>
+      <div class="game-name">Carrom</div>
+      <div class="game-desc">गोटी डालो, striker मारो — मज़ा लो!</div>
+      <div class="game-players">👥 2-4 Players</div>
+    </a>
+    <a href="games/pool.html" class="game-card reveal" style="--gc:rgba(255,50,100,0.15)">
+      <span class="game-emoji">🎱</span>
+      <div class="game-name">Pool / 8-Ball</div>
+      <div class="game-desc">Billiards table पर shot लगाओ!</div>
+      <div class="game-players">👥 2 Players</div>
+    </a>
+    <a href="games/snake.html" class="game-card reveal" style="--gc:rgba(150,50,255,0.15)">
+      <span class="game-emoji">🐍</span>
+      <div class="game-name">Snake & Ladder</div>
+      <div class="game-desc">सांप से बचो, सीढ़ी चढ़ो!</div>
+      <div class="game-players">👥 2-6 Players</div>
+    </a>
+    <a href="games/tictactoe.html" class="game-card reveal" style="--gc:rgba(255,200,0,0.15)">
+      <span class="game-emoji">✏️</span>
+      <div class="game-name">Tic Tac Toe</div>
+      <div class="game-desc">X और O की जंग — Simple लेकिन मज़ेदार!</div>
+      <div class="game-players">👥 2 Players</div>
+    </a>
+    <a href="games/cards.html" class="game-card reveal" style="--gc:rgba(255,100,50,0.15)">
+      <span class="game-emoji">🃏</span>
+      <div class="game-name">Card Games</div>
+      <div class="game-desc">Teen Patti, Rummy — पत्तों का खेल!</div>
+      <div class="game-players">👥 2-6 Players</div>
+    </a>
+    <a href="games/more.html" class="game-card reveal" style="--gc:rgba(0,200,200,0.15)">
+      <span class="game-emoji">🎮</span>
+      <div class="game-name">And More...</div>
+      <div class="game-desc">Dominoes, Checkers, और बहुत कुछ आ रहा है!</div>
+      <div class="game-players">🔜 Coming Soon</div>
+    </a>
+  </div>
+</section>
+
+<section class="section section-dark">
+  <div class="section-header reveal">
+    <div class="section-tag">Features</div>
+    <h2 class="section-title">क्यों है DesiPlay Best?</h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal"><div class="feat-icon" style="background:rgba(108,71,255,0.15)">📶</div><div class="feat-title">100% Offline</div><div class="feat-desc">Internet नहीं चाहिए! गांव हो या शहर, कहीं भी खेलो।</div></div>
+    <div class="feature-card reveal"><div class="feat-icon" style="background:rgba(255,215,0,0.15)">👥</div><div class="feat-title">Local Multiplayer</div><div class="feat-desc">एक phone पर 4 लोग खेल सकते हैं!</div></div>
+    <div class="feature-card reveal"><div class="feat-icon" style="background:rgba(0,200,100,0.15)">🇮🇳</div><div class="feat-title">Hindi Interface</div><div class="feat-desc">पूरा app Hindi में — कोई भी समझ सकता है!</div></div>
+    <div class="feature-card reveal"><div class="feat-icon" style="background:rgba(255,100,100,0.15)">⚡</div><div class="feat-title">Light & Fast</div><div class="feat-desc">सिर्फ 25MB — पुराने phones पर भी चलेगा।</div></div>
+    <div class="feature-card reveal"><div class="feat-icon" style="background:rgba(100,200,255,0.15)">🎨</div><div class="feat-title">Custom Themes</div><div class="feat-desc">Board का look बदलो — अपनी पसंद का style!</div></div>
+    <div class="feature-card reveal"><div class="feat-icon" style="background:rgba(255,150,0,0.15)">🏆</div><div class="feat-title">Leaderboard</div><div class="feat-desc">दोस्तों से compete करो — champion कौन है?</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header reveal">
+    <div class="section-tag">Paise Kamao</div>
+    <h2 class="section-title">Free App से कमाई कैसे?</h2>
+  </div>
+  <div class="money-grid">
+    <div class="money-card reveal"><div class="money-icon">📺</div><div class="money-title">Ads (AdMob)</div><div class="money-desc">Game के बाद video ad दिखाओ।</div><div class="money-earn">₹300-500 / 1,000 users daily</div></div>
+    <div class="money-card reveal"><div class="money-icon">🎨</div><div class="money-title">Premium Themes</div><div class="money-desc">नए board designs बेचो।</div><div class="money-earn">₹5,000+ / महीना possible</div></div>
+  </div>
+</section>
+
+<section class="section section-dark">
+  <div class="section-header reveal">
+    <div class="section-tag">Shuru Karo</div>
+    <h2 class="section-title">App कैसे बनाएं?</h2>
+  </div>
+  <div class="steps">
+    <div class="step reveal"><div class="step-num">1</div><div><h3>Unity Download करो</h3><p>unity.com पर जाओ — Personal version बिल्कुल free है।</p><span class="step-tag">⚡ Free Forever</span></div></div>
+    <div class="step reveal"><div class="step-num">2</div><div><h3>पहले Ludo बनाओ</h3><p>YouTube पर tutorials देखो — 2-3 हफ्ते में ready!</p><span class="step-tag">📺 YouTube से सीखो</span></div></div>
+    <div class="step reveal"><div class="step-num">3</div><div><h3>AdMob Ads लगाओ</h3><p>admob.google.com पर free account — ads का code लगाओ।</p><span class="step-tag">💰 कमाई का रास्ता</span></div></div>
+    <div class="step reveal"><div class="step-num">4</div><div><h3>Play Store Publish</h3><p>₹1,750 एक बार — दुनिया को दिखाओ!</p><span class="step-tag">🚀 Launch!</span></div></div>
+    <div class="step reveal"><div class="step-num">5</div><div><h3>Promote और कमाओ</h3><p>WhatsApp, Instagram — users बढ़ाओ, पैसे कमाओ!</p><span class="step-tag">🎉 ₹10,000-50,000/महीना</span></div></div>
+  </div>
+</section>
+
+<div class="cta-wrap">
+  <div class="cta-glow"></div>
+  <h2>अभी शुरू करो — बिल्कुल Free! 🚀</h2>
+  <p>आपका gaming empire शुरू होने वाला है। पहला कदम उठाओ आज!</p>
+  <div class="cta-btns">
+    <a href="download.html" class="btn-primary">📱 App Download करो</a>
+    <a href="contact.html" class="btn-secondary">💬 बात करो</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><span class="footer-logo">🎮 DesiPlay</span><p>भारत का सबसे बेहतरीन offline gaming app — बिल्कुल free!</p></div>
+    <div class="footer-col"><h4>Games</h4><a href="games/ludo.html">Ludo</a><a href="games/chess.html">Chess</a><a href="games/carrom.html">Carrom</a><a href="games/pool.html">Pool</a></div>
+    <div class="footer-col"><h4>Pages</h4><a href="about.html">About Us</a><a href="download.html">Download</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+  </div>
+  <div class="footer-bottom"><span class="footer-copy">© 2024 DesiPlay. Made with ❤️ in India 🇮🇳</span><span class="footer-copy">All games free forever</span></div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*80)})},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>

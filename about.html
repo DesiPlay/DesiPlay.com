@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DesiPlay — About Us</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero{padding:130px 5% 80px;text-align:center;position:relative;overflow:hidden;}
+.page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(108,71,255,0.22) 0%,transparent 70%);}
+.page-hero h1{font-family:'Baloo 2',cursive;font-size:clamp(36px,6vw,64px);font-weight:800;position:relative;margin-bottom:14px;}
+.page-hero p{color:var(--text2);font-size:17px;position:relative;max-width:600px;margin:0 auto;}
+
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1100px;margin:0 auto;}
+.mission-text h2{font-family:'Baloo 2',cursive;font-size:clamp(28px,4vw,44px);font-weight:800;margin-bottom:20px;line-height:1.2;}
+.mission-text p{color:var(--text2);font-size:15px;line-height:1.8;margin-bottom:16px;}
+.mission-visual{background:var(--card);border:1px solid var(--border);border-radius:28px;padding:48px;text-align:center;font-size:80px;}
+
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;}
+.team-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;text-align:center;transition:all 0.25s;}
+.team-card:hover{transform:translateY(-5px);border-color:rgba(108,71,255,0.3);}
+.avatar{width:72px;height:72px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:32px;}
+.team-name{font-size:17px;font-weight:600;margin-bottom:4px;}
+.team-role{font-size:13px;color:var(--text2);}
+
+.values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
+.value-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;transition:all 0.2s;}
+.value-card:hover{border-color:rgba(255,215,0,0.3);}
+.value-icon{font-size:36px;margin-bottom:12px;}
+.value-title{font-size:16px;font-weight:600;margin-bottom:8px;}
+.value-desc{font-size:13px;color:var(--text2);line-height:1.6;}
+
+.timeline{max-width:700px;margin:0 auto;}
+.tl-item{display:flex;gap:24px;padding-bottom:40px;position:relative;}
+.tl-item:not(:last-child)::after{content:'';position:absolute;left:23px;top:52px;width:2px;bottom:0;background:linear-gradient(var(--purple),transparent);}
+.tl-dot{width:48px;height:48px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;font-size:14px;font-weight:800;flex-shrink:0;}
+.tl-content h3{font-size:17px;font-weight:600;margin-bottom:6px;}
+.tl-content p{font-size:14px;color:var(--text2);line-height:1.6;}
+.tl-year{display:inline-block;margin-top:8px;background:rgba(108,71,255,0.15);color:var(--purple2);font-size:12px;padding:3px 10px;border-radius:100px;}
+
+@media(max-width:768px){.mission-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">🎮 Desi<span>Play</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="games.html">Games</a>
+    <a href="about.html" class="active">About</a>
+    <a href="download.html">Download</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="download.html" class="nav-cta">Free Download</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <h1>🇮🇳 हमारे बारे में</h1>
+  <p>DesiPlay को किसने बनाया, क्यों बनाया, और हमारा सपना क्या है?</p>
+</div>
+
+<section class="section">
+  <div class="mission-grid">
+    <div class="mission-text reveal">
+      <h2>हमारा Mission — भारत को एक करना Games से!</h2>
+      <p>DesiPlay की शुरुआत एक simple idea से हुई — India के हर घर में classic board games हैं, लेकिन सबके पास phone तो है ही। तो क्यों न इन games को digital करें, और वो भी बिल्कुल free!</p>
+      <p>हम चाहते हैं कि दादा-दादी से लेकर बच्चों तक, गांव से लेकर शहर तक — सब एक साथ खेलें, बिना internet की ज़रूरत के।</p>
+      <p>Internet नहीं? कोई बात नहीं। पुराना phone? चलेगा। Hindi नहीं आती? सिखा देंगे! — यही है DesiPlay का वादा।</p>
+    </div>
+    <div class="mission-visual reveal">
+      🎮<br><span style="font-size:20px;font-family:'Baloo 2',cursive;font-weight:700;">भारत का Gaming Hub</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark">
+  <div class="section-header reveal">
+    <div class="section-tag">Our Team</div>
+    <h2 class="section-title">हमारी Team</h2>
+    <p class="section-sub">छोटी team, बड़ा सपना!</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="avatar" style="background:rgba(108,71,255,0.2)">👨‍💻</div>
+      <div class="team-name">Rahul Sharma</div>
+      <div class="team-role">Founder & Lead Developer</div>
+    </div>
+    <div class="team-card reveal">
+      <div class="avatar" style="background:rgba(255,165,0,0.2)">🎨</div>
+      <div class="team-name">Priya Singh</div>
+      <div class="team-role">UI/UX Designer</div>
+    </div>
+    <div class="team-card reveal">
+      <div class="avatar" style="background:rgba(0,200,100,0.2)">🎮</div>
+      <div class="team-name">Amit Kumar</div>
+      <div class="team-role">Game Developer</div>
+    </div>
+    <div class="team-card reveal">
+      <div class="avatar" style="background:rgba(255,50,100,0.2)">📱</div>
+      <div class="team-name">Sneha Patel</div>
+      <div class="team-role">Marketing Head</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header reveal">
+    <div class="section-tag">Our Values</div>
+    <h2 class="section-title">हमारे Values</h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-card reveal"><div class="value-icon">🆓</div><div class="value-title">हमेशा Free</div><div class="value-desc">Core games हमेशा free रहेंगी। पैसा कमाएंगे ads और optional premium features से।</div></div>
+    <div class="value-card reveal"><div class="value-icon">🇮🇳</div><div class="value-title">Made in India</div><div class="value-desc">100% Indian team, Indian games, Indian users के लिए बनाया।</div></div>
+    <div class="value-card reveal"><div class="value-icon">📶</div><div class="value-title">Offline First</div><div class="value-desc">Internet हो या न हो — games हमेशा चलेंगी।</div></div>
+    <div class="value-card reveal"><div class="value-icon">👨‍👩‍👧‍👦</div><div class="value-title">Family Friendly</div><div class="value-desc">हर उम्र के लिए safe और fun games।</div></div>
+  </div>
+</section>
+
+<section class="section section-dark">
+  <div class="section-header reveal">
+    <div class="section-tag">Journey</div>
+    <h2 class="section-title">हमारा सफर</h2>
+  </div>
+  <div class="timeline">
+    <div class="tl-item reveal"><div class="tl-dot">💡</div><div class="tl-content"><h3>Idea आया</h3><p>Lockdown में दोस्तों के साथ Ludo खेलते खेलते सोचा — क्यों न एक app बनाएं जिसमें सब games हों?</p><span class="tl-year">2023 Jan</span></div></div>
+    <div class="tl-item reveal"><div class="tl-dot">🔨</div><div class="tl-content"><h3>Development शुरू</h3><p>Unity सीखना शुरू किया। YouTube tutorials, रात को coding — 3 महीने की मेहनत!</p><span class="tl-year">2023 Mar</span></div></div>
+    <div class="tl-item reveal"><div class="tl-dot">🚀</div><div class="tl-content"><h3>Launch!</h3><p>Play Store पर Ludo और Chess के साथ first version launch। पहले दिन 500 downloads!</p><span class="tl-year">2023 Jun</span></div></div>
+    <div class="tl-item reveal"><div class="tl-dot">📈</div><div class="tl-content"><h3>Growth</h3><p>Carrom, Pool, Snake & Ladder add किए। Users 10,000 पार हो गए!</p><span class="tl-year">2024 Jan</span></div></div>
+    <div class="tl-item reveal"><div class="tl-dot">🌟</div><div class="tl-content"><h3>आज</h3><p>7+ games, Hindi UI, और India के हर corner में users। सफर जारी है!</p><span class="tl-year">2024 Now</span></div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><span class="footer-logo">🎮 DesiPlay</span><p>भारत का सबसे बेहतरीन offline gaming app!</p></div>
+    <div class="footer-col"><h4>Games</h4><a href="games/ludo.html">Ludo</a><a href="games/chess.html">Chess</a><a href="games/carrom.html">Carrom</a><a href="games/pool.html">Pool</a></div>
+    <div class="footer-col"><h4>Pages</h4><a href="about.html">About</a><a href="download.html">Download</a><a href="contact.html">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><span class="footer-copy">© 2024 DesiPlay. Made with ❤️ in India 🇮🇳</span></div>
+</footer>
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*80)});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>

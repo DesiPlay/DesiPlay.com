@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DesiPlay — Download</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero{padding:130px 5% 80px;text-align:center;position:relative;overflow:hidden;}
+.page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(108,71,255,0.22) 0%,transparent 70%);}
+.page-hero h1{font-family:'Baloo 2',cursive;font-size:clamp(36px,6vw,64px);font-weight:800;position:relative;margin-bottom:14px;}
+.page-hero p{color:var(--text2);font-size:17px;position:relative;}
+
+.download-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:800px;margin:0 auto 60px;}
+.dl-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:36px;text-align:center;transition:all 0.25s;cursor:pointer;}
+.dl-card:hover{transform:translateY(-5px);border-color:rgba(108,71,255,0.4);}
+.dl-card.featured{border-color:rgba(108,71,255,0.5);background:rgba(108,71,255,0.06);}
+.dl-icon{font-size:56px;margin-bottom:16px;}
+.dl-name{font-family:'Baloo 2',cursive;font-size:22px;font-weight:700;margin-bottom:8px;}
+.dl-desc{font-size:14px;color:var(--text2);margin-bottom:24px;line-height:1.6;}
+.dl-btn{display:block;background:var(--purple);color:#fff;padding:13px 28px;border-radius:100px;font-size:15px;font-weight:600;text-decoration:none;transition:all 0.2s;}
+.dl-btn:hover{background:var(--purple2);}
+.dl-btn.outline{background:transparent;border:1px solid var(--border);color:var(--text);}
+.dl-btn.outline:hover{background:var(--card);}
+.dl-size{font-size:12px;color:var(--text2);margin-top:12px;}
+
+.requirements{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;}
+.req-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;}
+.req-icon{font-size:28px;margin-bottom:10px;}
+.req-title{font-size:14px;font-weight:600;margin-bottom:6px;}
+.req-val{font-size:13px;color:var(--text2);}
+
+.steps-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+.install-step{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;text-align:center;}
+.install-num{width:40px;height:40px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;font-weight:800;font-size:18px;margin:0 auto 14px;}
+.install-title{font-size:15px;font-weight:600;margin-bottom:6px;}
+.install-desc{font-size:13px;color:var(--text2);line-height:1.5;}
+
+.faq{max-width:800px;margin:0 auto;}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 24px;margin-bottom:12px;cursor:pointer;transition:all 0.2s;}
+.faq-item:hover{border-color:rgba(255,255,255,0.15);}
+.faq-q{font-size:15px;font-weight:600;display:flex;justify-content:space-between;align-items:center;}
+.faq-a{font-size:14px;color:var(--text2);line-height:1.7;margin-top:12px;display:none;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .faq-arrow{transform:rotate(180deg);}
+.faq-arrow{transition:transform 0.2s;font-size:18px;}
+
+@media(max-width:600px){.download-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">🎮 Desi<span>Play</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="games.html">Games</a>
+    <a href="about.html">About</a>
+    <a href="download.html" class="active">Download</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="download.html" class="nav-cta">Free Download</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <h1>📱 Download करो</h1>
+  <p>बिल्कुल free — Android और iOS दोनों पर!</p>
+</div>
+
+<section class="section" style="padding-top:0">
+  <div class="download-grid">
+    <div class="dl-card featured reveal">
+      <div class="dl-icon">🤖</div>
+      <div class="dl-name">Android</div>
+      <div class="dl-desc">Google Play Store पर available है। Android 5.0+ सभी phones पर चलेगा!</div>
+      <a href="#" class="dl-btn">▶ Play Store से Download</a>
+      <div class="dl-size">Size: 25MB • Free</div>
+    </div>
+    <div class="dl-card reveal">
+      <div class="dl-icon">🍎</div>
+      <div class="dl-name">iOS / iPhone</div>
+      <div class="dl-desc">App Store पर available है। iPhone और iPad दोनों पर चलेगा!</div>
+      <a href="#" class="dl-btn outline">🍎 App Store से Download</a>
+      <div class="dl-size">Size: 28MB • Free</div>
+    </div>
+  </div>
+
+  <div class="section-header reveal">
+    <div class="section-tag">Requirements</div>
+    <h2 class="section-title">क्या चाहिए?</h2>
+    <p class="section-sub">बहुत कम requirements — पुराने phones पर भी चलेगा!</p>
+  </div>
+  <div class="requirements">
+    <div class="req-card reveal"><div class="req-icon">🤖</div><div class="req-title">Android Version</div><div class="req-val">Android 5.0 या उससे ऊपर</div></div>
+    <div class="req-card reveal"><div class="req-icon">🍎</div><div class="req-title">iOS Version</div><div class="req-val">iOS 12.0 या उससे ऊपर</div></div>
+    <div class="req-card reveal"><div class="req-icon">💾</div><div class="req-title">Storage</div><div class="req-val">30MB खाली जगह चाहिए</div></div>
+    <div class="req-card reveal"><div class="req-icon">📶</div><div class="req-title">Internet</div><div class="req-val">Download के बाद नहीं चाहिए!</div></div>
+    <div class="req-card reveal"><div class="req-icon">🔋</div><div class="req-title">RAM</div><div class="req-val">1GB RAM काफी है</div></div>
+    <div class="req-card reveal"><div class="req-icon">💻</div><div class="req-title">Processor</div><div class="req-val">कोई भी processor — optimized है!</div></div>
+  </div>
+</section>
+
+<section class="section section-dark">
+  <div class="section-header reveal">
+    <div class="section-tag">Installation</div>
+    <h2 class="section-title">Install कैसे करें?</h2>
+  </div>
+  <div class="steps-row">
+    <div class="install-step reveal"><div class="install-num">1</div><div class="install-title">Download करो</div><div class="install-desc">Play Store या App Store से free download करो।</div></div>
+    <div class="install-step reveal"><div class="install-num">2</div><div class="install-title">Install होगा</div><div class="install-desc">Automatic install हो जाएगा — 1-2 minute लगेगा।</div></div>
+    <div class="install-step reveal"><div class="install-num">3</div><div class="install-title">Open करो</div><div class="install-desc">App open करो — कोई login नहीं चाहिए!</div></div>
+    <div class="install-step reveal"><div class="install-num">4</div><div class="install-title">खेलो!</div><div class="install-desc">सीधे game choose करो और मज़ा शुरू!</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header reveal">
+    <div class="section-tag">FAQ</div>
+    <h2 class="section-title">अक्सर पूछे जाने वाले सवाल</h2>
+  </div>
+  <div class="faq">
+    <div class="faq-item reveal"><div class="faq-q">क्या DesiPlay सच में बिल्कुल free है? <span class="faq-arrow">▼</span></div><div class="faq-a">हाँ! सभी core games बिल्कुल free हैं। हम ads से कमाते हैं। Optional premium themes paid हैं लेकिन games free रहेंगी हमेशा।</div></div>
+    <div class="faq-item reveal"><div class="faq-q">Internet के बिना खेल सकते हैं? <span class="faq-arrow">▼</span></div><div class="faq-a">बिल्कुल! एक बार download होने के बाद internet बिल्कुल नहीं चाहिए। Offline mode में सभी games perfectly काम करती हैं।</div></div>
+    <div class="faq-item reveal"><div class="faq-q">एक phone पर कितने लोग खेल सकते हैं? <span class="faq-arrow">▼</span></div><div class="faq-a">Ludo में 4, Carrom में 4, Snake & Ladder में 6 लोग — सब एक ही phone पर! Local multiplayer है।</div></div>
+    <div class="faq-item reveal"><div class="faq-q">App कितनी space लेगी? <span class="faq-arrow">▼</span></div><div class="faq-a">सिर्फ 25-30MB! हमने specifically light रखा है ताकि पुराने phones और कम storage वाले phones पर भी चले।</div></div>
+    <div class="faq-item reveal"><div class="faq-q">Login या Account बनाना ज़रूरी है? <span class="faq-arrow">▼</span></div><div class="faq-a">नहीं! कोई login नहीं, कोई account नहीं। सीधे app खोलो और खेलना शुरू करो। बिल्कुल आसान!</div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><span class="footer-logo">🎮 DesiPlay</span><p>भारत का सबसे बेहतरीन offline gaming app!</p></div>
+    <div class="footer-col"><h4>Games</h4><a href="games/ludo.html">Ludo</a><a href="games/chess.html">Chess</a><a href="games/carrom.html">Carrom</a><a href="games/pool.html">Pool</a></div>
+    <div class="footer-col"><h4>Pages</h4><a href="about.html">About</a><a href="download.html">Download</a><a href="contact.html">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><span class="footer-copy">© 2024 DesiPlay. Made with ❤️ in India 🇮🇳</span></div>
+</footer>
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*80)});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+document.querySelectorAll('.faq-item').forEach(item=>{item.addEventListener('click',()=>{item.classList.toggle('open');});});
+</script>
+</body>
+</html>
