@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "DesiPlay — Play Anywhere",
+  "short_name": "DesiPlay",
+  "description": "Quick, fun games that work offline.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#10111b",
+  "theme_color": "#10111b",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    {"src": "./assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ]
+}
