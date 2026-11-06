@@ -32,6 +32,14 @@ The service worker pre-caches the home page, assets and four game pages. Visit o
 
 There is no account system, backend API, online multiplayer, cloud save, leaderboard server, payment or ad integration. The included games are playable offline and save progress only on the current browser/device. Do not advertise server-backed or cross-device features until they are actually built and tested.
 
+## QA review (source-level)
+
+- Reviewed the homepage navigation, game search/category filtering, game routes, PWA manifest and service-worker precache list, plus the Tic Tac Toe, Snake, Memory Match and Ludo source.
+- Fixed a Ludo yard-layout coordinate mismatch that placed two starting tokens outside their intended yard slots.
+- Confirmed the service worker precache entries match the four game-page filenames and that the homepage routes point to those pages.
+- Browser gameplay, responsive-device rendering, installability and true offline behavior have not yet been runtime-tested. No automated workflow runs were returned for the reviewed PR head commits. Treat this as a source audit, not a release sign-off.
+- Known simplified Ludo rules remain: no three-consecutive-sixes penalty or blockade mechanic.
+
 ## Next recommended milestones
 
 1. Add more original/copyright-cleared games, AI opponents and additional board games.
