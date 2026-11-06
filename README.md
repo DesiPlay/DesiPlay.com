@@ -5,7 +5,7 @@ A lightweight, mobile-first collection of browser games designed to work offline
 ## Included in this upgrade
 
 - Responsive landing page with game search and category filters.
-- Tic Tac Toe (local two-player), Snake (keyboard and touch controls), and Memory Match.
+- Tic Tac Toe (local two-player), Snake (keyboard and touch controls), Memory Match, and Ludo (2–4 player pass-and-play).
 - Local best scores and preferences using browser local storage.
 - PWA manifest, install prompt support, app icon and service-worker cache.
 - Privacy notice describing current local-only behavior.
@@ -26,7 +26,7 @@ Publish the repository root with GitHub Pages or any static HTTPS host. Ensure t
 
 ## Offline behavior
 
-The service worker pre-caches the home page, assets and three game pages. Visit once while online to install the cache. Offline availability depends on a successful first cache and browser storage policies. Clearing site data removes cached files and local scores.
+The service worker pre-caches the home page, assets and four game pages. Visit once while online to install the cache. Offline availability depends on a successful first cache and browser storage policies. Clearing site data removes cached files and local scores.
 
 ## Current scope / not yet implemented
 
@@ -34,7 +34,7 @@ There is no account system, backend API, online multiplayer, cloud save, leaderb
 
 ## Next recommended milestones
 
-1. Add a full Ludo game and more original/copyright-cleared games.
+1. Add more original/copyright-cleared games, AI opponents and additional board games.
 2. Add automated tests, accessibility review and performance checks.
 3. Add optional accounts and cloud sync only with a documented backend and security model.
 4. Add real-time multiplayer only after authoritative server validation, matchmaking, abuse controls and privacy review.
