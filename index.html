@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10111b">
+<meta name="description" content="DesiPlay is a free collection of quick, fun games. Play offline on your phone, tablet or computer.">
+<title>DesiPlay — Play Anywhere</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="./" aria-label="DesiPlay home"><span class="brand-mark">D</span><span>Desi<span class="brand-accent">Play</span><small>PLAY ANYWHERE</small></span></a>
+  <nav class="nav-links" aria-label="Main navigation"><a class="active" href="./">Home</a><a href="#games">Games</a><a href="#why">Why DesiPlay</a></nav>
+  <div class="top-actions"><span class="network-pill"><i id="networkDot"></i><span id="networkText">Checking…</span></span><button class="btn btn-small btn-outline" id="installBtn" hidden>Install app</button><button class="icon-btn" id="themeBtn" aria-label="Toggle theme">☼</button><button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button></div>
+</header>
+<main>
+<section class="hero">
+ <div class="hero-glow glow-one"></div><div class="hero-glow glow-two"></div>
+ <div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot"></span> YOUR EVERYDAY GAME ZONE</div>
+ <h1>Less scrolling.<br><span>More playing.</span></h1>
+ <p class="hero-lede">Quick games, good vibes. Jump into a game on any device—even when your internet takes a break.</p>
+ <div class="hero-actions"><a class="btn btn-primary" href="#games">Explore games <span>↗</span></a><button class="btn btn-quiet" id="continueBtn">Continue playing <span>→</span></button></div>
+ <div class="hero-proof"><div class="proof-avatars"><b>🎮</b><b>⚡</b><b>🏆</b></div><span>Free to play <em>·</em> No account needed <em>·</em> Offline-ready</span></div>
+ </div>
+ <div class="hero-art" aria-label="Decorative game controller illustration"><div class="art-orbit orbit-a"></div><div class="art-orbit orbit-b"></div><div class="controller"><div class="controller-top"><span class="dpad">✣</span><span class="stick"></span><span class="buttons"><i>●</i><i>●</i><i>●</i><i>●</i></span></div><div class="controller-bottom"><span></span><span></span></div></div><div class="float-chip chip-a">✦ LEVEL UP</div><div class="float-chip chip-b">🎲 LET'S PLAY</div><div class="float-chip chip-c">⚡ OFFLINE MODE</div></div>
+</section>
+<section class="quick-stats" aria-label="Platform features"><div><strong>03</strong><span>Playable games</span></div><div><strong>FREE</strong><span>Always free to start</span></div><div><strong>0 MB</strong><span>Account setup</span></div><div><strong>OFFLINE</strong><span>After first visit</span></div></section>
+<section class="section games-section" id="games">
+ <div class="section-heading"><div><div class="eyebrow">PICK YOUR NEXT MOVE</div><h2>Choose your game<span class="heading-dot">.</span></h2><p>Easy to learn. Hard to put down.</p></div><div class="game-tools"><label class="search-box"><span>⌕</span><input id="gameSearch" type="search" placeholder="Search games…" aria-label="Search games"></label></div></div>
+ <div class="filters" role="group" aria-label="Filter games"><button class="filter active" data-filter="all">All games</button><button class="filter" data-filter="puzzle">Puzzle</button><button class="filter" data-filter="classic">Classic</button><button class="filter" data-filter="arcade">Arcade</button></div>
+ <div class="game-grid" id="gameGrid">
+  <article class="game-card featured" data-category="classic" data-name="tic tac toe noughts crosses">
+   <div class="card-art art-tictactoe"><span class="art-symbol x">×</span><span class="art-symbol o">○</span><span class="art-label">CLASSIC DUEL</span></div>
+   <div class="card-body"><div class="card-topline"><span class="tag tag-green">2 PLAYERS</span><span class="card-time">2–5 min</span></div><h3>Tic Tac Toe</h3><p>The timeless X and O showdown. Challenge a friend on the same device.</p><a class="card-link" href="./games/tic-tac-toe.html">Play now <span>↗</span></a></div>
+  </article>
+  <article class="game-card" data-category="arcade" data-name="snake classic arcade">
+   <div class="card-art art-snake"><span class="snake-emoji">🐍</span><span class="art-label">ARCADE RUSH</span><span class="pixel-food">✦</span></div>
+   <div class="card-body"><div class="card-topline"><span class="tag tag-purple">ARCADE</span><span class="card-time">Endless</span></div><h3>Snake</h3><p>Eat, grow and beat your best score. One more round? Always.</p><a class="card-link" href="./games/snake.html">Play now <span>↗</span></a></div>
+  </article>
+  <article class="game-card" data-category="puzzle" data-name="memory match cards puzzle">
+   <div class="card-art art-memory"><div class="memory-tiles"><b>✦</b><b>?</b><b>?</b><b>✦</b></div><span class="art-label">BRAIN BOOST</span></div>
+   <div class="card-body"><div class="card-topline"><span class="tag tag-gold">PUZZLE</span><span class="card-time">3–8 min</span></div><h3>Memory Match</h3><p>Flip the cards, find the pairs and train your memory.</p><a class="card-link" href="./games/memory-match.html">Play now <span>↗</span></a></div>
+  </article>
+ </div>
+ <div class="empty-state" id="emptyState" hidden>No games match that search. Try another name.</div>
+</section>
+<section class="feature-band" id="why"><div class="feature-intro"><div class="eyebrow">MADE FOR EVERY MOMENT</div><h2>Your games.<br><span>Your rules.</span></h2><p>DesiPlay is built to feel fast, simple and welcoming—whether you have five minutes or a whole evening.</p></div><div class="feature-list"><div class="feature-row"><span class="feature-icon">📴</span><div><h3>Play offline</h3><p>Open the site once while online. Cached games can then work without a connection.</p></div><span class="feature-number">01</span></div><div class="feature-row"><span class="feature-icon">📱</span><div><h3>Feels at home on mobile</h3><p>Responsive controls and layouts for phones, tablets and desktops.</p></div><span class="feature-number">02</span></div><div class="feature-row"><span class="feature-icon">🏅</span><div><h3>Your progress stays local</h3><p>Best scores and preferences are saved on this device. No account required.</p></div><span class="feature-number">03</span></div></div></section>
+<section class="bottom-cta"><div><div class="eyebrow">READY WHEN YOU ARE</div><h2>Take a little break.<br>Make it a good one.</h2></div><a class="btn btn-primary" href="#games">Find a game <span>↗</span></a></section>
+</main>
+<footer><a class="brand footer-brand" href="./"><span class="brand-mark">D</span><span>Desi<span class="brand-accent">Play</span><small>PLAY ANYWHERE</small></span></a><p>Made for play, wherever you are.</p><span>© <span id="year"></span> DesiPlay</span></footer>
+<script src="./assets/site.js" defer></script>
+</body></html>
