@@ -5,7 +5,7 @@ A lightweight, mobile-first collection of browser games designed to work offline
 ## Included in this upgrade
 
 - Responsive landing page with game search and category filters.
-- Tic Tac Toe (local two-player), Snake (keyboard and touch controls), Memory Match, and Ludo (2–4 player pass-and-play).
+- Tic Tac Toe (local two-player), Snake (keyboard and touch controls), Memory Match, and Ludo (selectable 2–4 player pass-and-play).
 - Local best scores and preferences using browser local storage.
 - PWA manifest, install prompt support, app icon and service-worker cache.
 - Privacy notice describing current local-only behavior.
