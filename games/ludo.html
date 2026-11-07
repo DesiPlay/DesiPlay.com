@@ -1,35 +1,100 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#10111b"><meta name="description" content="Play DesiPlay Ludo offline with friends on one device."><title>Ludo — DesiPlay</title><link rel="manifest" href="../manifest.webmanifest"><link rel="stylesheet" href="../assets/site.css">
-<style>
-.ludo-layout{display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:24px;align-items:center;max-width:780px;margin:auto}.ludo-board{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));aspect-ratio:1;background:#222638;border:5px solid #33364a;border-radius:12px;overflow:hidden;gap:1px}.ludo-cell{background:#34384b;min-width:0;min-height:0;display:grid;place-items:center;position:relative}.ludo-cell.track{background:#f1eee6}.ludo-cell.center{background:conic-gradient(#e65c5c 0 25%,#f0c34d 0 50%,#4f9cda 0 75%,#5da66b 0)}.ludo-cell.lane-red{background:#f2b6b6}.ludo-cell.lane-blue{background:#b5d8f4}.ludo-cell.lane-yellow{background:#f8e4a3}.ludo-cell.lane-green{background:#b9e0bd}.ludo-cell.safe:after{content:'★';color:#555;opacity:.65;font-size:clamp(7px,1.3vw,15px)}.yard{border:2px solid #ffffffaa;border-radius:10px;background:#e65c5c;display:grid;grid-template-columns:repeat(2,1fr);place-items:center;gap:3px;padding:8%;width:100%;height:100%}.yard.blue{background:#4f9cda}.yard.yellow{background:#e6bd43}.yard.green{background:#5da66b}.yard-slot{width:70%;aspect-ratio:1;background:#fff;border-radius:50%;border:2px solid #ffffff99;display:grid;place-items:center}.token{width:90%;height:90%;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px #0007;display:grid;place-items:center;color:#fff;font-size:clamp(7px,1.2vw,13px);font-weight:900;cursor:pointer;padding:0}.token.red{background:#d83e45}.token.blue{background:#287dc0}.token.yellow{background:#d6a51e}.token.green{background:#388a4c}.token.selected{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 0 5px #c6f36b}.ludo-cell .token{position:absolute;width:90%;height:90%;z-index:2}.ludo-cell:has(.token){z-index:2}.ludo-cell.center{z-index:0;pointer-events:none}.ludo-side{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:17px}.player-list{display:grid;gap:8px;margin:15px 0}.player-pill{padding:9px;border:1px solid var(--line);border-radius:9px;font-size:12px;display:flex;align-items:center;gap:8px}.player-pill.active{border-color:var(--lime);background:#c6f36b12}.player-dot{width:10px;height:10px;border-radius:50%}.dice-face{font-size:56px;text-align:center;line-height:1.3;margin:12px 0}.dice-face.rolling{animation:shake .35s ease}@keyframes shake{25%{transform:rotate(-15deg) scale(1.1)}75%{transform:rotate(15deg) scale(1.1)}}.ludo-side .game-btn{width:100%;margin:4px 0}.ludo-message{font-size:12px;color:var(--muted);line-height:1.6;min-height:56px}.rules{max-width:780px;margin:18px auto 0;color:var(--muted);font-size:12px;line-height:1.8}.rules summary{cursor:pointer;color:var(--text);font-weight:700}.rules ul{padding-left:19px}@media(max-width:680px){.ludo-layout{grid-template-columns:1fr;gap:12px}.ludo-side{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center}.ludo-side h3,.player-list,.ludo-message{grid-column:1/-1}.dice-face{margin:0}.ludo-board{border-width:3px}.yard{border-width:1px;border-radius:5px;padding:5%}}
-</style></head>
-<body><main class="game-shell"><div class="game-nav"><a class="brand" href="../"><span class="brand-mark">D</span><span>Desi<span class="brand-accent">Play</span><small>PLAY ANYWHERE</small></span></a><a class="back-link" href="../">← All games</a></div><section class="game-panel"><div class="game-heading"><div class="eyebrow" style="justify-content:center">PASS & PLAY • OFFLINE</div><h1>Ludo</h1><p>Roll a six, bring your tokens home and race your friends.</p></div><div class="ludo-layout"><div class="ludo-board" id="board" role="group" aria-label="Ludo board"></div><aside class="ludo-side"><h3 style="margin:0">Game controls</h3><label class="player-count-label" for="playerCount" style="font-size:12px;color:var(--muted)">Players <select id="playerCount" style="display:block;width:100%;margin-top:5px;padding:9px;border-radius:8px;background:var(--panel);color:var(--text);border:1px solid var(--line)"><option value="2">2 players</option><option value="3">3 players</option><option value="4" selected>4 players</option></select></label><div class="player-list" id="players"></div><div><div class="dice-face" id="dice" aria-live="polite">🎲</div><button class="game-btn" id="roll">Roll dice</button><button class="game-btn secondary" id="new">New game</button></div><p class="ludo-message" id="message" aria-live="polite">Red starts. Roll a six to bring a token out.</p></aside></div><details class="rules"><summary>How to play Ludo</summary><ul><li>Choose 2, 3 or 4 players. Everyone shares one device; each player has four tokens. In two-player mode Red and Yellow play; in three-player mode Red, Blue and Yellow play.</li><li>Roll a six to move a token out of the yard. A six gives another roll.</li><li>Tap one of your highlighted movable tokens after rolling.</li><li>Land on an opponent on a non-safe square to send that token back to its yard.</li><li>Star squares are safe. Your token must roll the exact number to reach home.</li><li>First player to bring all four tokens home wins. This is local pass-and-play on one device; online multiplayer is not included.</li></ul></details></section></main>
-<script>
-(()=>{'use strict';
-const COLORS=['red','blue','yellow','green'],NAMES={red:'Red',blue:'Blue',yellow:'Yellow',green:'Green'},START={red:6,blue:19,yellow:32,green:45};
-const LANES={red:[[1,6],[2,6],[3,6],[4,6],[5,6],[6,6]],blue:[[6,12],[6,11],[6,10],[6,9],[6,8],[6,7]],yellow:[[12,7],[11,7],[10,7],[9,7],[8,7],[7,7]],green:[[7,1],[7,2],[7,3],[7,4],[7,5],[7,6]]};
-const path=[];for(let c=0;c<14;c++)path.push([0,c]);for(let r=1;r<14;r++)path.push([r,13]);for(let c=12;c>=0;c--)path.push([13,c]);for(let r=12;r>=1;r--)path.push([r,0]);
-const $=s=>document.querySelector(s),boardEl=$('#board');let players=[],turn=0,dice=null,rolling=false,finished=false,legal=[];const PLAYER_SETS={2:['red','yellow'],3:['red','blue','yellow'],4:COLORS};
-const safe=new Set([6,19,32,45,0,13,26,39]);
-function newGame(){const count=Number($('#playerCount').value);players=PLAYER_SETS[count].map(color=>({color,tokens:[-1,-1,-1,-1]}));turn=0;dice=null;rolling=false;finished=false;legal=[];$('#dice').textContent='🎲';$('#message').textContent='Red starts. Roll a six to bring a token out.';draw();}
-function active(){return players[turn];}
-function globalPos(color,progress){return (START[color]+progress)%52;}
-function movesFor(p,d){return p.tokens.map((v,i)=>({v,i})).filter(({v})=>v===-1?d===6:v<57&&v+d<=57);}
-function nextTurn(extra){dice=null;legal=[];if(!extra)turn=(turn+1)%players.length;draw();}
-function roll(){if(rolling||finished||dice!==null)return;rolling=true;const el=$('#dice');el.classList.add('rolling');let count=0;const spin=setInterval(()=>{el.textContent=['⚀','⚁','⚂','⚃','⚄','⚅'][Math.floor(Math.random()*6)];if(++count>=8){clearInterval(spin);dice=1+Math.floor(Math.random()*6);rolling=false;el.classList.remove('rolling');el.textContent=['⚀','⚁','⚂','⚃','⚄','⚅'][dice-1];legal=movesFor(active(),dice).map(x=>x.i);if(!legal.length){$('#message').textContent=NAMES[active().color]+' rolled '+dice+'. No valid move.';setTimeout(()=>{if(dice!==null)nextTurn(dice===6);},900);}else{$('#message').textContent=NAMES[active().color]+' rolled '+dice+'. Tap a highlighted token.';draw();}}},65);}
-function capture(color,progress){if(progress<0||progress>51)return;const pos=globalPos(color,progress);if(safe.has(pos))return;for(const p of players){if(p.color===color)continue;p.tokens=p.tokens.map(v=>{if(v>=0&&v<=51&&globalPos(p.color,v)===pos){return -1;}return v;});}}
-function move(i){if(dice===null||!legal.includes(i)||finished)return;const p=active(),d=dice;let v=p.tokens[i];v=v===-1?0:v+d;p.tokens[i]=v;if(v<=51)capture(p.color,v);const won=p.tokens.every(x=>x===57);if(won){finished=true;$('#message').textContent='🏆 '+NAMES[p.color]+' wins the game!';dice=null;legal=[];draw();return;}const extra=d===6;$('#message').textContent=(extra?'Six! Roll again.':NAMES[p.color]+' moved. Next player: '+NAMES[players[(turn+1)%players.length].color]);nextTurn(extra);}
-function tokenLocation(color,progress,index){if(progress===-1){const base={red:[3,3],blue:[3,9],yellow:[9,9],green:[9,3]}[color];return [base[0]+Math.floor(index/2),base[1]+(index%2)];}if(progress<=51)return path[globalPos(color,progress)];if(progress<=56)return LANES[color][progress-52];return {red:[6,6],blue:[6,7],yellow:[7,7],green:[7,6]}[color];}
-function draw(){boardEl.innerHTML='';const cells=new Map();for(let r=0;r<14;r++)for(let c=0;c<14;c++){const el=document.createElement('div');el.className='ludo-cell';el.style.gridRow=r+1;el.style.gridColumn=c+1;boardEl.append(el);cells.set(r+','+c,el);}
-for(const [r,c] of path){cells.get(r+','+c).classList.add('track');}
-for(const color of COLORS){for(const [r,c] of LANES[color])cells.get(r+','+c).classList.add('lane-'+color);}
-for(const [color,r,c] of [['red',2,2],['blue',2,8],['yellow',8,8],['green',8,2]]){const box=document.createElement('div');box.className='yard '+color;box.style.gridRow=(r+1)+' / span 4';box.style.gridColumn=(c+1)+' / span 4';for(let i=0;i<4;i++){const slot=document.createElement('div');slot.className='yard-slot';box.append(slot);}boardEl.append(box);}
-const center=document.createElement('div');center.className='ludo-cell center';center.style.gridRow='6 / span 3';center.style.gridColumn='6 / span 3';boardEl.append(center);
-for(const pos of safe){const [r,c]=path[pos];cells.get(r+','+c).classList.add('safe');}
-const yardSlots={};const yardDefs={red:[[3,3],[3,4],[4,3],[4,4]],blue:[[3,9],[3,10],[4,9],[4,10]],yellow:[[9,9],[9,10],[10,9],[10,10]],green:[[9,3],[9,4],[10,3],[10,4]]};for(const color of COLORS){const box=boardEl.querySelector('.yard.'+color);[...box.children].forEach((slot,i)=>{const [r,c]=yardDefs[color][i];yardSlots[r+','+c]=slot;});}const occupied={};players.forEach(p=>p.tokens.forEach((v,i)=>{const [r,c]=tokenLocation(p.color,v,i);const key=r+','+c;(occupied[key]??=[]).push({p,i});}));
-for(const [key,items] of Object.entries(occupied)){const [r,c]=key.split(',').map(Number),cell=yardSlots[key]||cells.get(key);if(!cell)continue;items.forEach(({p,i},n)=>{const b=document.createElement('button');b.className='token '+p.color+(p.color===active().color&&legal.includes(i)?' selected':'');b.textContent=String(i+1);b.type='button';b.setAttribute('aria-label',NAMES[p.color]+' token '+(i+1)+(p.tokens[i]===-1?' in yard':p.tokens[i]===57?' home':' on track'));b.addEventListener('click',()=>{if(p.color===active().color)move(i);});if(items.length>1){b.style.transform='scale(.7) translate('+(n*5)+'px,'+(n*5)+'px)';}cell.append(b);});}
-const plist=$('#players');plist.innerHTML='';players.forEach((p,i)=>{const row=document.createElement('div');row.className='player-pill'+(i===turn?' active':'');const dot=document.createElement('i');dot.className='player-dot';dot.style.background={red:'#e65c5c',blue:'#4f9cda',yellow:'#e6bd43',green:'#5da66b'}[p.color];const label=document.createElement('span');label.textContent=NAMES[p.color]+' · '+p.tokens.filter(x=>x===57).length+'/4 home';row.append(dot,label);plist.append(row);});$('#roll').disabled=dice!==null||finished||rolling;$('#roll').textContent=dice!==null?'Choose token':'Roll dice';}
-$('#roll').addEventListener('click',roll);$('#new').addEventListener('click',newGame);$('#playerCount').addEventListener('change',newGame);newGame();
-if('serviceWorker'in navigator)navigator.serviceWorker.register('../sw.js').catch(()=>{});
-})();
-</script></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10111b">
+<meta name="description" content="Play classic Ludo with 2–4 players on one device. Pass and play offline with captures, safe squares, blockades and home lanes.">
+<title>Ludo — DesiPlay</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/ludo.css">
+</head>
+<body>
+<main class="game-shell">
+  <div class="game-nav">
+    <a class="brand" href="../" aria-label="DesiPlay home"><span class="brand-mark">D</span><span>Desi<span class="brand-accent">Play</span><small>PLAY ANYWHERE</small></span></a>
+    <a class="back-link" href="../#games">← All games</a>
+  </div>
+
+  <section class="game-panel ludo-panel" aria-labelledby="ludoTitle">
+    <header class="game-heading">
+      <div class="eyebrow" style="justify-content:center">CLASSIC BOARD GAME · PASS & PLAY</div>
+      <h1 id="ludoTitle">Ludo</h1>
+      <p>Roll, race, capture and bring all four tokens home.</p>
+      <div class="ludo-heading-meta">
+        <span class="local-only-badge">LOCAL · 2–4 PLAYERS</span>
+        <span>One device, shared between players</span>
+      </div>
+    </header>
+
+    <div class="ludo-toolbar">
+      <label for="playerCount">Players
+        <select id="playerCount">
+          <option value="2">2 players · Red & Yellow</option>
+          <option value="3">3 players · Red, Blue & Yellow</option>
+          <option value="4" selected>4 players · All colours</option>
+        </select>
+      </label>
+      <button class="game-btn secondary" id="newGame" type="button">New game</button>
+    </div>
+
+    <div class="ludo-game-layout">
+      <div class="ludo-board-wrap">
+        <div class="ludo-board" id="board" role="group" aria-label="Ludo board">
+          <span class="visually-hidden">The Ludo board. Select a highlighted token after rolling the dice.</span>
+        </div>
+        <p class="board-hint" id="boardHint">Roll the dice. When you have a legal move, the available tokens will glow—select one to move it.</p>
+      </div>
+
+      <aside class="ludo-sidebar" aria-label="Game controls and player status">
+        <section class="ludo-side-card">
+          <h2>Current turn</h2>
+          <div class="current-turn">
+            <span class="current-turn-dot" id="currentPlayerDot" aria-hidden="true"></span>
+            <span><span id="currentPlayerName">Red</span><small id="currentPlayerSub">Ready to roll</small></span>
+          </div>
+        </section>
+
+        <section class="ludo-side-card players-card">
+          <h2>Players</h2>
+          <div class="player-list" id="playersList" aria-label="Player progress"></div>
+        </section>
+
+        <section class="ludo-side-card dice-card">
+          <h2>Dice</h2>
+          <div class="dice-face" id="diceFace" aria-hidden="true">🎲</div>
+          <p class="dice-label" id="diceLabel">Roll to start your turn.</p>
+          <button class="game-btn" id="rollButton" type="button">Roll dice</button>
+        </section>
+
+        <section class="ludo-side-card status-card">
+          <h2>Game status</h2>
+          <p class="game-status" id="gameStatus" role="status" aria-live="polite">Red starts. Roll the dice.</p>
+        </section>
+
+        <p class="local-save-note">Your match is saved automatically in this browser on this device. No account, server or online multiplayer is used.</p>
+      </aside>
+    </div>
+
+    <details class="ludo-rules">
+      <summary>How to play · rules</summary>
+      <ul>
+        <li><strong>Players:</strong> choose 2, 3 or 4 local players. Two-player mode uses Red and Yellow; three-player mode uses Red, Blue and Yellow.</li>
+        <li><strong>Leave the yard:</strong> roll a six to move a token onto its own starting square. A six gives you another roll.</li>
+        <li><strong>Move:</strong> after rolling, select one of your highlighted tokens. Tokens travel clockwise around the outer track, then enter their own coloured home lane. You need the exact number to reach the centre.</li>
+        <li><strong>Capture:</strong> land on a single opponent token on a non-safe square to send it back to its yard. A capture earns an extra roll.</li>
+        <li><strong>Safe squares:</strong> the star squares and all four starting squares are safe. Tokens on a safe square cannot be captured.</li>
+        <li><strong>Blockades:</strong> two tokens of the same colour on one track square form a blockade. No token may pass through it or land on it. Moving one of the pair breaks the blockade.</li>
+        <li><strong>Three sixes:</strong> if you roll three sixes in a row, the third roll is ignored and your turn ends.</li>
+        <li><strong>Extra rolls:</strong> get another roll for a six, a capture or bringing a token exactly home. The first player to bring all four tokens home wins.</li>
+      </ul>
+      <p>This is a local pass-and-play game for one shared device. Online multiplayer, accounts and cloud saves are not included.</p>
+    </details>
+  </section>
+</main>
+<script src="../assets/ludo-engine.js" defer></script>
+<script src="../assets/ludo.js" defer></script>
+</body>
+</html>
