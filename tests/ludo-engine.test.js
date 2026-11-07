@@ -92,7 +92,7 @@ test('a token cannot land on an opponent blockade', function () {
 
 test('requires an exact roll to enter home and awards an extra roll on arrival', function () {
   let state = Ludo.createGame(2);
-  state.players[0].tokens[0] = 56;
+  state.players[0].tokens[0] = 57;
   state = Ludo.roll(state, 2);
   assert.equal(state.dice, null);
   assert.equal(state.turn, 1);
@@ -101,25 +101,77 @@ test('requires an exact roll to enter home and awards an extra roll on arrival',
   state = Ludo.roll(state, 1);
   assert.deepEqual(Ludo.legalMoves(state), [0]);
   state = Ludo.moveToken(state, 0);
-  assert.equal(state.players[0].tokens[0], 57);
+  assert.equal(state.players[0].tokens[0], 58);
   assert.equal(state.turn, 0);
   assert.match(state.message, /Extra roll/);
 });
 
+test('uses all six coloured home-lane squares before the centre', function () {
+  let state = Ludo.createGame(2);
+  state.players[0].tokens[0] = 51;
+
+  for (let progress = 52; progress <= 57; progress += 1) {
+    state.turn = 0;
+    state = Ludo.roll(state, 1);
+    assert.deepEqual(Ludo.legalMoves(state), [0]);
+    state = Ludo.moveToken(state, 0);
+    assert.equal(state.players[0].tokens[0], progress);
+  }
+
+  assert.equal(state.status, 'playing');
+  state.turn = 0;
+  state = Ludo.roll(state, 1);
+  state = Ludo.moveToken(state, 0);
+  assert.equal(state.players[0].tokens[0], 58);
+  assert.match(state.message, /Extra roll/);
+});
+
+test('a six with no legal move retains the turn but the third six forfeits it', function () {
+  let state = Ludo.createGame(2);
+  state.players[0].tokens = [57, 57, 57, 57];
+
+  state = Ludo.roll(state, 6);
+  assert.equal(state.turn, 0);
+  assert.equal(state.sixesInRow, 1);
+  assert.equal(state.dice, null);
+
+  state = Ludo.roll(state, 6);
+  assert.equal(state.turn, 0);
+  assert.equal(state.sixesInRow, 2);
+
+  state = Ludo.roll(state, 6);
+  assert.equal(state.turn, 1);
+  assert.equal(state.sixesInRow, 0);
+  assert.equal(state.dice, null);
+});
+
+test('turn rotation follows the selected player count', function () {
+  let state = Ludo.createGame(3);
+  state.players[0].tokens[0] = 0;
+  state = Ludo.roll(state, 1);
+  state = Ludo.moveToken(state, 0);
+  assert.equal(Ludo.currentPlayer(state).color, 'blue');
+
+  state.players[1].tokens[0] = 0;
+  state = Ludo.roll(state, 1);
+  state = Ludo.moveToken(state, 0);
+  assert.equal(Ludo.currentPlayer(state).color, 'yellow');
+});
+
 test('declares a winner when all four tokens reach home', function () {
   let state = Ludo.createGame(2);
-  state.players[0].tokens = [57, 57, 57, 56];
+  state.players[0].tokens = [58, 58, 58, 57];
   state = Ludo.roll(state, 1);
   state = Ludo.moveToken(state, 3);
 
   assert.equal(state.status, 'won');
   assert.equal(state.winner, 'red');
-  assert.equal(state.players[0].tokens.every(function (progress) { return progress === 57; }), true);
+  assert.equal(state.players[0].tokens.every(function (progress) { return progress === 58; }), true);
 });
 
 test('validates saved match state and rejects invalid token positions', function () {
   const state = Ludo.createGame(3);
   assert.equal(Ludo.validateState(state), true);
-  state.players[0].tokens[0] = 58;
+  state.players[0].tokens[0] = 59;
   assert.equal(Ludo.validateState(state), false);
 });
