@@ -33,6 +33,10 @@
 .board-cell.center-cell.lane-green{background:#bce1c0}
 .board-cell.home-center{background:conic-gradient(#e65c5c 0 25%,#4f9cda 0 50%,#e6bd43 0 75%,#5da66b 0 100%);box-shadow:inset 0 0 0 2px #f4f0e5}
 .board-cell.home-center:before{content:'★';font-size:clamp(8px,1.5vw,18px);color:#fff;text-shadow:0 1px 3px #0008}
+.token-stack{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;gap:1px;pointer-events:none}
+.token-stack .token-button{pointer-events:auto}
+.token-stack.multi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:center;justify-items:center;gap:0}
+.token-stack.multi .token-button{width:100%;max-width:22px;min-width:14px;min-height:14px;font-size:7px}
 .token-button{position:relative;z-index:2;display:grid;place-items:center;width:82%;max-width:36px;aspect-ratio:1;padding:0;border:2px solid #fff;border-radius:50%;color:#fff;font-size:clamp(7px,.95vw,11px);min-width:22px;min-height:22px;font-weight:900;line-height:1;background:#555;box-shadow:0 2px 4px #0008;touch-action:manipulation}
 .token-button.red{background:#d83e49}
 .token-button.blue{background:#287fbd}
