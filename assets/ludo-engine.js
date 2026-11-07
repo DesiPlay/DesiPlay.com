@@ -6,7 +6,7 @@
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
 
-  const VERSION = 1;
+  const VERSION = 2;
   const COLORS = ['red', 'blue', 'yellow', 'green'];
   const START_INDEX = { red: 0, blue: 13, yellow: 26, green: 39 };
   const SAFE_SQUARES = new Set([0, 8, 13, 21, 26, 34, 39, 47]);
@@ -95,7 +95,7 @@
   function canMoveToken(state, player, tokenIndex) {
     const progress = player.tokens[tokenIndex];
     const dice = state.dice;
-    if (!Number.isInteger(dice) || progress === 57 || progress < -1 || progress > 57) return false;
+    if (!Number.isInteger(dice) || progress === 58 || progress < -1 || progress > 58) return false;
 
     if (progress === -1) {
       if (dice !== 6) return false;
@@ -103,7 +103,7 @@
     }
 
     const target = progress + dice;
-    if (target > 57) return false;
+    if (target > 58) return false;
 
     if (progress >= 52) return true;
 
@@ -202,10 +202,10 @@
       }
     }
 
-    const reachedHome = destination === 57;
+    const reachedHome = destination === 58;
     next.dice = null;
 
-    if (player.tokens.every(function (progress) { return progress === 57; })) {
+    if (player.tokens.every(function (progress) { return progress === 58; })) {
       next.status = 'won';
       next.winner = player.color;
       next.message = '🏆 ' + title(player.color) + ' wins! All four tokens are home.';
@@ -238,14 +238,24 @@
     if (state.lastRoll !== null && (!Number.isInteger(state.lastRoll) || state.lastRoll < 1 || state.lastRoll > 6)) return false;
     if (!Number.isInteger(state.sixesInRow) || state.sixesInRow < 0 || state.sixesInRow > 2) return false;
     if (state.status !== 'playing' && state.status !== 'won') return false;
-    if (state.status === 'won' && state.players[state.turn].color !== state.winner) return false;
-    if (state.status === 'playing' && state.winner !== null) return false;
+    if (state.sixesInRow > 0 && state.lastRoll !== 6) return false;
+    if (state.dice !== null && state.lastRoll !== state.dice) return false;
+    if (state.status === 'won') {
+      const winner = state.players[state.turn];
+      if (!winner || winner.color !== state.winner || !Array.isArray(winner.tokens) ||
+          state.dice !== null || !winner.tokens.every(function (progress) { return progress === 58; })) return false;
+    } else {
+      if (state.winner !== null) return false;
+      if (state.players.some(function (player) {
+        return Array.isArray(player && player.tokens) && player.tokens.every(function (progress) { return progress === 58; });
+      })) return false;
+    }
     const expected = PLAYER_SETS[state.playerCount];
     for (let index = 0; index < expected.length; index += 1) {
       const player = state.players[index];
       if (!player || player.color !== expected[index] || !Array.isArray(player.tokens) || player.tokens.length !== 4) return false;
       if (!player.tokens.every(function (progress) {
-        return Number.isInteger(progress) && progress >= -1 && progress <= 57;
+        return Number.isInteger(progress) && progress >= -1 && progress <= 58;
       })) return false;
     }
     return typeof state.message === 'string';
