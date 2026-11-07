@@ -23,7 +23,7 @@ The Ludo game uses a documented classic ruleset:
 - A six, a capture or bringing a token exactly home grants an extra roll.
 - The first player to bring all four tokens home wins.
 
-Choose 2, 3 or 4 players. Two-player mode uses Red and Yellow; three-player mode uses Red, Blue and Yellow. The match is automatically saved in the current browser's local storage and can be resumed on that same device.
+Choose 2, 3 or 4 players. Two-player mode uses Red and Yellow; three-player mode uses Red, Blue and Yellow. The match is automatically saved in the current browser's local storage and can be resumed on that same device. The save schema is versioned; this home-lane correction starts a fresh match instead of interpreting older saved token positions under the new rules.
 
 This is local pass-and-play only. There is no online multiplayer, account system, backend API, cloud save, server leaderboard, payment or ad integration. Regional Ludo rule variations may differ from the rules listed above.
 
@@ -37,19 +37,19 @@ python -m http.server 8000
 
 Open http://localhost:8000.
 
-## Run the Ludo rules tests
+## Run the automated source and rules tests
 
 With Node.js 18 or later, run:
 
 ```bash
-node --test tests/ludo-engine.test.js
+node --test tests/*.test.js
 ```
 
-The tests cover player modes, yard release, bonus rolls, the three-sixes rule, captures, safe squares, blockades, exact home entry, winning and saved-state validation.
+The tests cover Ludo player modes, turn rotation, yard release, six-roll behavior, captures, safe squares, blockades, all six home-lane squares, exact centre entry, winning and saved-state validation. Site-integrity tests verify game routes, manifest structure and offline precache dependencies.
 
 ## Offline behavior
 
-The service worker pre-caches the home page, shared assets, the Ludo page and its stylesheet/rules/UI scripts, plus the other game pages. Visit once while online to install the cache. Offline availability depends on a successful first cache and browser storage policies. Clearing site data removes cached files and the locally saved match.
+The service worker pre-caches the home page, privacy page, shared assets, the Ludo page and its stylesheet/rules/UI scripts, plus all other game pages. Visit once while online to install the cache. Offline availability depends on a successful first cache and browser storage policies. Clearing site data removes cached files and the locally saved match.
 
 ## Privacy and limitations
 
@@ -57,10 +57,12 @@ Scores, preferences and the saved Ludo match remain in the current browser on th
 
 ## QA status
 
-- Source-reviewed the homepage Ludo card, its classic category and search metadata, the Ludo route, game assets and service-worker precache list.
-- Added a deterministic rules engine and Node built-in tests for core movement and rule scenarios.
-- The Ludo board is responsive and uses native buttons, visible focus treatment, live status announcements and reduced-motion-aware highlighting.
-- Browser gameplay, screen-reader behavior, physical-device layout, installability and true offline operation still require runtime QA before production release.
+- Source-reviewed the homepage routes, search/category metadata, responsive breakpoints, navigation controls, game pages, manifest and service-worker cache dependencies.
+- Corrected Ludo progress so all six coloured home-lane squares are traversed before the centre; versioned the saved-match schema so older progress is not misread.
+- Added regression coverage for six-roll/no-move behavior, player rotation, the full home lane and winner validation.
+- Fixed a Memory Match restart timer race, made local score storage fail safely in Snake and Tic Tac Toe, and exposed mobile navigation state to assistive technology.
+- Added the privacy page to the offline precache and refreshed the service-worker cache version.
+- Browser gameplay, screen-reader behavior, physical-device layout, installability and real offline behavior still require runtime QA before production release.
 
 ## Suggested next milestones
 
