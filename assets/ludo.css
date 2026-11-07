@@ -1,3 +1,4 @@
+.game-shell.ludo-shell{max-width:1240px}
 .ludo-panel{max-width:1120px;margin-inline:auto}
 .ludo-heading-meta{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:12px;color:var(--muted);font-size:11px}
 .ludo-heading-meta span{display:inline-flex;align-items:center;gap:6px}
@@ -26,6 +27,10 @@
 .board-cell.yard-green{background:#347b48}
 .board-cell.yard-slot:before{content:'';position:absolute;inset:13%;border-radius:50%;background:#f7f5ef;border:1px solid #ffffffa8;box-shadow:inset 0 2px 5px #0002,0 1px 3px #0003}
 .board-cell.center-cell{background:#36394b}
+.board-cell.center-cell.lane-red{background:#f3b9b9}
+.board-cell.center-cell.lane-blue{background:#b9daf3}
+.board-cell.center-cell.lane-yellow{background:#f7e5a8}
+.board-cell.center-cell.lane-green{background:#bce1c0}
 .board-cell.home-center{background:conic-gradient(#e65c5c 0 25%,#4f9cda 0 50%,#e6bd43 0 75%,#5da66b 0 100%);box-shadow:inset 0 0 0 2px #f4f0e5}
 .board-cell.home-center:before{content:'★';font-size:clamp(8px,1.5vw,18px);color:#fff;text-shadow:0 1px 3px #0008}
 .token-button{position:relative;z-index:2;display:grid;place-items:center;width:82%;max-width:36px;aspect-ratio:1;padding:0;border:2px solid #fff;border-radius:50%;color:#fff;font-size:clamp(7px,.95vw,11px);min-width:22px;min-height:22px;font-weight:900;line-height:1;background:#555;box-shadow:0 2px 4px #0008;touch-action:manipulation}
