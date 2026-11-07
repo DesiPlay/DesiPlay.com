@@ -12,7 +12,7 @@
   };
   const LETTERS = { red: 'R', blue: 'B', yellow: 'Y', green: 'G' };
   const DICE_FACES = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
-  const STORAGE_KEY = 'desiplay.ludo.match.v2';
+  const STORAGE_KEY = 'desiplay.ludo.match.v3';
   const TRACK = [];
   const LANES = {
     red: [[7, 1], [7, 2], [7, 3], [7, 4], [7, 5], [7, 6]],
@@ -138,13 +138,13 @@
       const trackIndex = (Engine.START_INDEX[color] + progress) % 52;
       return TRACK[trackIndex];
     }
-    if (progress >= 52 && progress <= 56) return LANES[color][progress - 52];
+    if (progress >= 52 && progress <= 57) return LANES[color][progress - 52];
     return [7, 7];
   }
 
   function progressLabel(progress) {
     if (progress === -1) return 'in the yard';
-    if (progress === 57) return 'home';
+    if (progress === 58) return 'home';
     if (progress >= 52) return 'in the home lane';
     return 'on the track';
   }
@@ -209,7 +209,7 @@
 
       const count = document.createElement('span');
       count.className = 'player-count';
-      count.textContent = player.tokens.filter(function (progress) { return progress === 57; }).length + '/4 home';
+      count.textContent = player.tokens.filter(function (progress) { return progress === 58; }).length + '/4 home';
       row.append(name, count);
       playersList.appendChild(row);
     });
