@@ -62,7 +62,7 @@
   }
 
   function globalPosition(color, progress) {
-    if (progress < 0 || progress > 51) return null;
+    if (progress < 0 || progress > 52) return null;
     return (START_INDEX[color] + progress) % 52;
   }
 
@@ -71,7 +71,7 @@
     state.players.forEach(function (player) {
       let count = 0;
       player.tokens.forEach(function (progress) {
-        if (progress >= 0 && progress <= 51 && globalPosition(player.color, progress) === position) count += 1;
+        if (progress >= 0 && progress <= 52 && globalPosition(player.color, progress) === position) count += 1;
       });
       if (count) counts[player.color] = count;
     });
@@ -95,7 +95,7 @@
   function canMoveToken(state, player, tokenIndex) {
     const progress = player.tokens[tokenIndex];
     const dice = state.dice;
-    if (!Number.isInteger(dice) || progress === 58 || progress < -1 || progress > 58) return false;
+    if (!Number.isInteger(dice) || progress === 59 || progress < -1 || progress > 59) return false;
 
     if (progress === -1) {
       if (dice !== 6) return false;
@@ -103,11 +103,11 @@
     }
 
     const target = progress + dice;
-    if (target > 58) return false;
+    if (target > 59) return false;
 
-    if (progress >= 52) return true;
+    if (progress >= 53) return true;
 
-    if (target <= 51) {
+    if (target <= 52) {
       for (let step = 1; step <= dice; step += 1) {
         const position = globalPosition(player.color, progress + step);
         const blockade = blockadeAt(state, position);
@@ -118,7 +118,7 @@
     }
 
     // A token entering its home lane still has to pass every remaining track square.
-    for (let step = 1; step <= 51 - progress; step += 1) {
+    for (let step = 1; step <= 52 - progress; step += 1) {
       if (blockadeAt(state, globalPosition(player.color, progress + step))) return false;
     }
     return true;
@@ -186,13 +186,13 @@
     player.tokens[tokenIndex] = destination;
 
     let captured = 0;
-    if (destination >= 0 && destination <= 51) {
+    if (destination >= 0 && destination <= 52) {
       const position = globalPosition(player.color, destination);
       if (!SAFE_SQUARES.has(position)) {
         next.players.forEach(function (opponent) {
           if (opponent.color === player.color) return;
           opponent.tokens = opponent.tokens.map(function (progress) {
-            if (progress >= 0 && progress <= 51 && globalPosition(opponent.color, progress) === position) {
+            if (progress >= 0 && progress <= 52 && globalPosition(opponent.color, progress) === position) {
               captured += 1;
               return -1;
             }
@@ -202,10 +202,10 @@
       }
     }
 
-    const reachedHome = destination === 58;
+    const reachedHome = destination === 59;
     next.dice = null;
 
-    if (player.tokens.every(function (progress) { return progress === 58; })) {
+    if (player.tokens.every(function (progress) { return progress === 59; })) {
       next.status = 'won';
       next.winner = player.color;
       next.message = '🏆 ' + title(player.color) + ' wins! All four tokens are home.';
@@ -247,7 +247,7 @@
     } else {
       if (state.winner !== null) return false;
       if (state.players.some(function (player) {
-        return Array.isArray(player && player.tokens) && player.tokens.every(function (progress) { return progress === 58; });
+        return Array.isArray(player && player.tokens) && player.tokens.every(function (progress) { return progress === 59; });
       })) return false;
     }
     const expected = PLAYER_SETS[state.playerCount];
@@ -255,7 +255,7 @@
       const player = state.players[index];
       if (!player || player.color !== expected[index] || !Array.isArray(player.tokens) || player.tokens.length !== 4) return false;
       if (!player.tokens.every(function (progress) {
-        return Number.isInteger(progress) && progress >= -1 && progress <= 58;
+        return Number.isInteger(progress) && progress >= -1 && progress <= 59;
       })) return false;
     }
     return typeof state.message === 'string';
