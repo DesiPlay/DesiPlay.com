@@ -10,8 +10,10 @@
  addEventListener('online',network);addEventListener('offline',network);network();
  $('#themeBtn').addEventListener('click',()=>{document.body.classList.toggle('light');localStorage.setItem('desiplay-theme',document.body.classList.contains('light')?'light':'dark');});
  if(localStorage.getItem('desiplay-theme')==='light')document.body.classList.add('light');
- $('#menuBtn').addEventListener('click',()=>$('.nav-links').classList.toggle('open'));
- document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>$('.nav-links').classList.remove('open')));
+ const menu=$('#menuBtn'), nav=$('.nav-links');
+ function setMenuOpen(open){nav.classList.toggle('open',open);menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close menu':'Open menu');}
+ menu.addEventListener('click',()=>setMenuOpen(!nav.classList.contains('open')));
+ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>setMenuOpen(false)));
  $('#continueBtn').addEventListener('click',()=>{const last=localStorage.getItem('desiplay-last-game');location.href=last||'./games/tic-tac-toe.html';});
  document.querySelectorAll('.game-card a').forEach(a=>a.addEventListener('click',()=>localStorage.setItem('desiplay-last-game',a.href)));
  let installPrompt=null;const install=$('#installBtn');
