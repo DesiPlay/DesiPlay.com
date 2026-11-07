@@ -59,8 +59,9 @@ Scores, preferences and the saved Ludo match remain in the current browser on th
 
 - Source-reviewed the homepage Ludo card, its classic category and search metadata, the Ludo route, game assets and service-worker precache list.
 - Added a deterministic rules engine and Node built-in tests for core movement and rule scenarios.
-- The Ludo board is responsive and uses native buttons, visible focus treatment, live status announcements and reduced-motion-aware highlighting.
-- Browser gameplay, screen-reader behavior, physical-device layout, installability and true offline operation still require runtime QA before production release.
+- Ran `node --test tests/ludo-engine.test.js`: all 10 tests passed. JavaScript syntax checks passed for the rules engine, UI, tests and service worker.
+- The Ludo board is responsive and uses native buttons, visible focus treatment, live status announcements, touch-sized move choices and reduced-motion-aware highlighting.
+- Browser gameplay, actual screen-reader behavior, physical-device layout, installability and true offline operation still require runtime QA before production release.
 
 ## Suggested next milestones
 
