@@ -133,17 +133,17 @@
 
   function tokenCoordinate(color, progress, index) {
     if (progress === -1) return YARD_SLOTS[color][index];
-    if (progress >= 0 && progress <= 51) {
+    if (progress >= 0 && progress <= 52) {
       const trackIndex = (Engine.START_INDEX[color] + progress) % 52;
       return TRACK[trackIndex];
     }
-    if (progress >= 52 && progress <= 57) return LANES[color][progress - 52];
+    if (progress >= 53 && progress <= 58) return LANES[color][progress - 53];
     return [7, 7];
   }
 
   function progressLabel(progress) {
     if (progress === -1) return 'in the yard';
-    if (progress === 58) return 'home';
+    if (progress === 59) return 'home';
     if (progress >= 52) return 'in the home lane';
     return 'on the track';
   }
@@ -208,7 +208,7 @@
 
       const count = document.createElement('span');
       count.className = 'player-count';
-      count.textContent = player.tokens.filter(function (progress) { return progress === 58; }).length + '/4 home';
+      count.textContent = player.tokens.filter(function (progress) { return progress === 59; }).length + '/4 home';
       row.append(name, count);
       playersList.appendChild(row);
     });
