@@ -169,9 +169,26 @@ test('declares a winner when all four tokens reach home', function () {
   assert.equal(state.players[0].tokens.every(function (progress) { return progress === 58; }), true);
 });
 
-test('validates saved match state and rejects invalid token positions', function () {
+test('validates saved match state, schema versions and winner invariants', function () {
   const state = Ludo.createGame(3);
   assert.equal(Ludo.validateState(state), true);
-  state.players[0].tokens[0] = 59;
-  assert.equal(Ludo.validateState(state), false);
+
+  const invalidPosition = Ludo.createGame(3);
+  invalidPosition.players[0].tokens[0] = 59;
+  assert.equal(Ludo.validateState(invalidPosition), false);
+
+  const oldSchema = Ludo.createGame(3);
+  oldSchema.version = 1;
+  assert.equal(Ludo.validateState(oldSchema), false);
+
+  const incompleteWinner = Ludo.createGame(2);
+  incompleteWinner.status = 'won';
+  incompleteWinner.winner = 'red';
+  assert.equal(Ludo.validateState(incompleteWinner), false);
+
+  const completeWinner = Ludo.createGame(2);
+  completeWinner.players[0].tokens = [58, 58, 58, 58];
+  completeWinner.status = 'won';
+  completeWinner.winner = 'red';
+  assert.equal(Ludo.validateState(completeWinner), true);
 });
