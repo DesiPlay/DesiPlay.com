@@ -28,8 +28,13 @@ test('homepage game cards point to real game pages and expose searchable categor
     assert.match(html, new RegExp('data-filter="' + category + '"'));
   });
   assert.match(html, /id="gameSearch"/);
+  assert.match(html, /href="\.\/privacy\.html"/);
   assert.match(html, /id="menuBtn"[^>]*aria-expanded="false"/);
-  assert.match(read('assets/site.js'), /setMenuOpen/);
+  const siteJs = read('assets/site.js');
+  assert.match(siteJs, /setMenuOpen/);
+  assert.match(siteJs, /search\?\.addEventListener\('input',filter\)/);
+  assert.match(siteJs, /card\.dataset\.category===category/);
+  assert.match(read('assets/site.css'), /@media\s*\(max-width:/);
 });
 
 test('service worker precaches all game dependencies and the privacy route', function () {
