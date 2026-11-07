@@ -130,6 +130,14 @@ test('uses all six coloured home-lane squares before the centre', function () {
   assert.match(state.message, /Extra roll/);
 });
 
+test('a completed lap returns each colour to its safe starting square', function () {
+  Ludo.COLORS.forEach(function (color) {
+    const start = Ludo.START_INDEX[color];
+    assert.equal(Ludo.globalPosition(color, 52), start);
+    assert.equal(Ludo.SAFE_SQUARES.includes(start), true);
+  });
+});
+
 test('a blockade on the start square blocks a token returning from the last track square', function () {
   let state = Ludo.createGame(2);
   state.players[0].tokens[0] = 51;
