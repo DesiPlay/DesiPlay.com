@@ -28,7 +28,7 @@
 .board-cell.center-cell{background:#36394b}
 .board-cell.home-center{background:conic-gradient(#e65c5c 0 25%,#4f9cda 0 50%,#e6bd43 0 75%,#5da66b 0 100%);box-shadow:inset 0 0 0 2px #f4f0e5}
 .board-cell.home-center:before{content:'★';font-size:clamp(8px,1.5vw,18px);color:#fff;text-shadow:0 1px 3px #0008}
-.token-button{position:relative;z-index:2;display:grid;place-items:center;width:82%;max-width:36px;aspect-ratio:1;padding:0;border:2px solid #fff;border-radius:50%;color:#fff;font-size:clamp(5px,.95vw,11px);font-weight:900;line-height:1;background:#555;box-shadow:0 2px 4px #0008;touch-action:manipulation}
+.token-button{position:relative;z-index:2;display:grid;place-items:center;width:82%;max-width:36px;aspect-ratio:1;padding:0;border:2px solid #fff;border-radius:50%;color:#fff;font-size:clamp(7px,.95vw,11px);min-width:22px;min-height:22px;font-weight:900;line-height:1;background:#555;box-shadow:0 2px 4px #0008;touch-action:manipulation}
 .token-button.red{background:#d83e49}
 .token-button.blue{background:#287fbd}
 .token-button.yellow{background:#c18e13;color:#171925}
@@ -55,6 +55,8 @@
 .dice-label{color:var(--muted);font-size:11px;min-height:32px;margin:0 0 12px}
 .dice-card .game-btn{width:100%;min-height:46px}
 .dice-card .game-btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.legal-move-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:9px}
+.legal-move-button{width:100%;min-height:44px;padding:9px 6px;font-size:11px;line-height:1.3;white-space:normal}
 .game-status{border-left:3px solid var(--lime);padding:9px 11px;margin:0;background:#c6f36b0d;color:var(--text);font-size:12px;line-height:1.6;min-height:58px}
 .local-save-note{color:var(--muted);font-size:10px;line-height:1.6;margin:0}
 .ludo-rules{max-width:900px;margin:24px auto 0;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:12px;line-height:1.75}
@@ -64,7 +66,7 @@
 .ludo-rules li{margin:5px 0}
 .ludo-rules strong{color:var(--text)}
 @media(max-width:850px){.ludo-game-layout{grid-template-columns:1fr}.ludo-board{width:min(100%,680px)}.ludo-sidebar{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}.ludo-sidebar .status-card,.ludo-sidebar .players-card{grid-column:1/-1}}
-@media(max-width:560px){.ludo-panel{padding:16px 12px}.ludo-toolbar{justify-content:center}.ludo-toolbar label{width:100%;justify-content:space-between}.ludo-toolbar select{flex:1}.ludo-toolbar .game-btn{flex:1}.ludo-board{padding:3px;gap:1px;border-radius:9px}.token-button{width:88%;border-width:1px;font-size:clamp(5px,1.4vw,9px)}.ludo-sidebar{grid-template-columns:1fr}.ludo-sidebar .status-card,.ludo-sidebar .players-card{grid-column:auto}.dice-face{font-size:54px;min-height:58px}}
+@media(max-width:560px){.ludo-panel{padding:16px 12px}.ludo-toolbar{justify-content:center}.ludo-toolbar label{width:100%;justify-content:space-between}.ludo-toolbar select{flex:1}.ludo-toolbar .game-btn{flex:1}.ludo-board{padding:3px;gap:1px;border-radius:9px}.token-button{width:88%;border-width:1px;font-size:clamp(7px,1.8vw,10px);min-width:22px;min-height:22px}.ludo-sidebar{grid-template-columns:1fr}.ludo-sidebar .status-card,.ludo-sidebar .players-card{grid-column:auto}.dice-face{font-size:54px;min-height:58px}}
 @media(prefers-reduced-motion:reduce){.token-button.legal{animation:none}.dice-face{transition:none}}
 
 .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
