@@ -171,6 +171,8 @@
     stacks.forEach(function (tokens, coordinateKey) {
       const cell = cells.get(coordinateKey);
       if (!cell) return;
+      const stack = document.createElement('div');
+      stack.className = 'token-stack' + (tokens.length > 1 ? ' multi' : '');
       tokens.forEach(function (token) {
         const isLegal = token.player.color === active.color && moves.indexOf(token.index) !== -1;
         const button = document.createElement('button');
@@ -182,12 +184,12 @@
           Engine.title(token.player.color) + ' token ' + (token.index + 1) + ', ' + progressLabel(token.progress) +
           (isLegal ? ', legal move' : ''));
         button.title = button.getAttribute('aria-label');
-        if (tokens.length > 1) button.style.width = '43%';
         button.addEventListener('click', function () {
           makeMove(token.index);
         });
-        cell.appendChild(button);
+        stack.appendChild(button);
       });
+      cell.appendChild(stack);
     });
   }
 
