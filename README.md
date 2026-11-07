@@ -14,7 +14,7 @@ A lightweight, mobile-first collection of browser games designed to work offline
 The Ludo game uses a documented classic ruleset:
 
 - Roll a six to bring a token out of the yard; a six grants another roll.
-- Move around the shared 52-square track, then enter your own six-square home lane.
+- Complete one circuit of the shared 52-square track, return to your starting square, then enter your own six-square home lane.
 - An exact roll is required to reach the centre.
 - Capture a single opponent token by landing on it on a non-safe square; captured tokens return to their yard and the capturer gets another roll.
 - Start squares and star squares are safe.
@@ -45,7 +45,7 @@ With Node.js 18 or later, run:
 node --test tests/*.test.js
 ```
 
-The tests cover Ludo player modes, turn rotation, yard release, six-roll behavior, captures, safe squares, blockades, all six home-lane squares, exact centre entry, winning and saved-state validation. Site-integrity tests verify game routes, manifest structure and offline precache dependencies.
+The tests cover Ludo player modes, turn rotation, yard release, six-roll behavior, captures, safe squares, blockades on the track and start square, the full lap, all six home-lane squares, exact centre entry, winning and saved-state validation. Site-integrity tests verify game routes, manifest structure and offline precache dependencies.
 
 ## Offline behavior
 
@@ -58,7 +58,7 @@ Scores, preferences and the saved Ludo match remain in the current browser on th
 ## QA status
 
 - Source-reviewed the homepage routes, search/category metadata, responsive breakpoints, navigation controls, game pages, manifest and service-worker cache dependencies.
-- Corrected Ludo progress so all six coloured home-lane squares are traversed before the centre; versioned the saved-match schema so older progress is not misread.
+- Corrected Ludo progress to require a complete lap back to the start square, then traverse all six coloured home-lane squares before the centre; versioned the saved-match schema so older progress is not misread.
 - Added regression coverage for six-roll/no-move behavior, player rotation, the full home lane and winner validation.
 - Fixed a Memory Match restart timer race, made local score storage fail safely in Snake and Tic Tac Toe, and exposed mobile navigation state to assistive technology.
 - Added the privacy page to the offline precache and refreshed the service-worker cache version.
