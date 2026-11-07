@@ -14,7 +14,7 @@ A lightweight, mobile-first collection of browser games designed to work offline
 The Ludo game uses a documented classic ruleset:
 
 - Roll a six to bring a token out of the yard; a six grants another roll.
-- Move clockwise around the 52-square track, then enter your own six-square home lane.
+- Move around the shared 52-square track, then enter your own six-square home lane.
 - An exact roll is required to reach the centre.
 - Capture a single opponent token by landing on it on a non-safe square; captured tokens return to their yard and the capturer gets another roll.
 - Start squares and star squares are safe.
