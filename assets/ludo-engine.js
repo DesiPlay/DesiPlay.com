@@ -243,7 +243,7 @@
     if (state.status === 'won') {
       const winner = state.players[state.turn];
       if (!winner || winner.color !== state.winner || !Array.isArray(winner.tokens) ||
-          state.dice !== null || !winner.tokens.every(function (progress) { return progress === 58; })) return false;
+          state.dice !== null || !winner.tokens.every(function (progress) { return progress === 59; })) return false;
     } else {
       if (state.winner !== null) return false;
       if (state.players.some(function (player) {
