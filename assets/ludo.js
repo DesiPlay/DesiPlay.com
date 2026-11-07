@@ -214,6 +214,23 @@
     });
   }
 
+  function renderMoveChoices() {
+    const choices = $('moveChoices');
+    choices.replaceChildren();
+    const active = Engine.currentPlayer(state);
+    Engine.legalMoves(state).forEach(function (index) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'game-btn secondary legal-move-button';
+      button.textContent = 'Move token ' + (index + 1);
+      button.setAttribute('aria-label', 'Move ' + Engine.title(active.color) + ' token ' + (index + 1));
+      button.addEventListener('click', function () {
+        makeMove(index);
+      });
+      choices.appendChild(button);
+    });
+  }
+
   function render() {
     const active = Engine.currentPlayer(state);
     const moves = Engine.legalMoves(state);
@@ -237,6 +254,7 @@
     playerCount.value = String(state.playerCount);
     renderPlayers();
     renderBoard();
+    renderMoveChoices();
   }
 
   function makeMove(index) {
