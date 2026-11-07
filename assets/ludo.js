@@ -72,7 +72,6 @@
       for (let column = 0; column < 15; column += 1) {
         const cell = document.createElement('div');
         cell.className = 'board-cell';
-        cell.setAttribute('role', 'presentation');
         cell.style.gridRow = String(row + 1);
         cell.style.gridColumn = String(column + 1);
 
@@ -276,9 +275,6 @@
   newGameButton.addEventListener('click', startNewGame);
   playerCount.addEventListener('change', startNewGame);
 
-  if (state.message && !state.message.toLowerCase().includes('restored')) {
-    state.message = 'Match ready. ' + state.message;
-  }
   buildBoard();
   saveState();
   render();
