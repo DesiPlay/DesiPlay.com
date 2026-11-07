@@ -73,9 +73,9 @@ test('Ludo page loads its rules engine before the UI and all six lane cells are 
   assert.ok(html.indexOf('../assets/ludo-engine.js') < html.indexOf('../assets/ludo.js'));
   assert.match(html, /\.\.\/assets\/ludo\.css/);
   const ui = read('assets/ludo.js');
-  assert.match(ui, /progress >= 52 && progress <= 57/);
-  assert.match(ui, /progress === 58/);
-  assert.match(ui, /progress === 58;\s*}\)\.length/);
+  assert.match(ui, /progress >= 53 && progress <= 58/);
+  assert.match(ui, /progress === 59/);
+  assert.match(ui, /progress === 59;\s*}\)\.length/);
 });
 
 test('game pages include mobile viewport metadata and the Memory Match restart timer is cancellable', function () {
