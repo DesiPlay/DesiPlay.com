@@ -1,5 +1,5 @@
-const CACHE='desiplay-shell-v2';
-const CORE=['./','./index.html','./manifest.webmanifest','./assets/site.css','./assets/site.js','./assets/icon.svg','./games/tic-tac-toe.html','./games/snake.html','./games/memory-match.html','./games/ludo.html'];
+const CACHE='desiplay-shell-v3';
+const CORE=['./','./index.html','./manifest.webmanifest','./assets/site.css','./assets/site.js','./assets/icon.svg','./assets/ludo.css','./assets/ludo-engine.js','./assets/ludo.js','./games/tic-tac-toe.html','./games/snake.html','./games/memory-match.html','./games/ludo.html'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));});
 self.addEventListener('fetch',event=>{
