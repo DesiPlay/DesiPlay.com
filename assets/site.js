@@ -15,6 +15,17 @@
  menu.addEventListener('click',()=>setMenuOpen(!nav.classList.contains('open')));
  document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>setMenuOpen(false)));
  $('#continueBtn').addEventListener('click',()=>{const last=localStorage.getItem('desiplay-last-game');location.href=last||'./games/tic-tac-toe.html';});
+ const shareBtn=$('#shareBtn');
+ shareBtn?.addEventListener('click',async()=>{
+  const shareData={title:'DesiPlay — Play Anywhere',text:'Play free games on DesiPlay. No account needed!',url:location.href};
+  const original=shareBtn.innerHTML;
+  try{
+   if(navigator.share){await navigator.share(shareData);}
+   else if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(shareData.url);shareBtn.textContent='Link copied ✓';}
+   else{const field=document.createElement('textarea');field.value=shareData.url;field.setAttribute('readonly','');field.style.position='fixed';field.style.opacity='0';document.body.append(field);field.select();const copied=document.execCommand('copy');field.remove();shareBtn.textContent=copied?'Link copied ✓':'Copy link from address bar';}
+  }catch(error){if(error?.name!=='AbortError')shareBtn.textContent='Share unavailable';}
+  if(shareBtn.textContent!=='Share unavailable')setTimeout(()=>{shareBtn.innerHTML=original;},2200);
+ });
  document.querySelectorAll('.game-card a').forEach(a=>a.addEventListener('click',()=>localStorage.setItem('desiplay-last-game',a.href)));
  let installPrompt=null;const install=$('#installBtn');
  addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;install.hidden=false;});
